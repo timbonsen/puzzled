@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import logo from './assets/icons/JigsawFat.png'
+import accountButton from './assets/icons/AccountFat.png'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    return (
+        <>
+            <div className="navContainer">
+                <div className="navBar">
+                    <nav>
+                        <div className="logoContainer">
+                            <img className="puzzledLogo" src={logo} alt="Puzzled Logo"/>
+                            <div className="puzzledName">PUZZLED</div>
+                        </div>
+                        <a className="navButton">HOME</a>
+                        <a className="navButton">UPLOAD</a>
+                        <a className="navButton">SEARCH</a>
+                    </nav>
+                    <img className="accountButton" src={accountButton} alt="Account Button"/>
+                </div>
+            </div>
+        </>
+
   );
 }
 
