@@ -1,3 +1,4 @@
+import React from "react";
 import logo from "../assets/icons/JigsawFat.png";
 import accountButton from "../assets/icons/AccountFat.png";
 import { NavLink } from "react-router-dom";
@@ -9,13 +10,15 @@ function TopMenu() {
                 <nav>
                     <div className="logoContainer">
                         <img className="puzzledLogo" src={logo} alt="Puzzled Logo"/>
-                        <div className="puzzledName">PUZZLED</div>
+                        <NavLink to="/home" className="puzzledName">PUZZLED</NavLink>
                     </div>
-                    <NavLink to="/" exact className="navButton" activeClassName="navButtonActive">HOME</NavLink>
+                    <NavLink to="/home" className="navButton" activeClassName="navButtonActive">HOME</NavLink>
                     <NavLink to="/upload" className="navButton" activeClassName="navButtonActive">UPLOAD</NavLink>
                     <NavLink to="/search" className="navButton" activeClassName="navButtonActive">SEARCH</NavLink>
                 </nav>
-                <img className="accountButton" src={accountButton} alt="Account Button"/>
+                <NavLink to="/account" classname="accountButton">
+                    <img className="accountButtonImage" src={accountButton} alt="Account Button"/>
+                </NavLink>
             </div>
         </div>
     )

@@ -1,13 +1,24 @@
-p {
-  color: black;
+.submitButton {
+  width: 100px;
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  margin: 10px;
 }
 
 .navContainer {
   width: 100%;
   background-color: #ffbf9a;
   height: 80px;
-  position: fixed;
-  top: 0%;
+  position: relative;
+  top: 0;
   display: flex;
   justify-content: center;
 }
@@ -27,6 +38,23 @@ nav {
   font-family: "Leelawadee UI";
   font-size: large;
   font-weight: bold;
+}
+
+.titleContainer {
+  position: relative;
+  width: 100%;
+  border: #720072 solid;
+  border-left-style: none;
+  border-right-style: none;
+}
+
+.pageTitle {
+  display: flex;
+  justify-content: center;
+  font-family: "Leelawadee UI";
+  font-size: large;
+  font-weight: bold;
+  color: #720072;
 }
 
 .logoContainer {
@@ -50,16 +78,18 @@ nav {
   text-decoration: underline;
 }
 
-.puzzledLogo, .accountButton {
+.puzzledLogo, .accountButtonImage {
   width: 50px;
   height: 50px;
   margin: 10px;
 }
 
 .puzzledName {
+  color: #720072;
   font-family: "Leelawadee UI";
   font-size: x-large;
   font-weight: bold;
+  text-decoration: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

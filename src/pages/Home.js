@@ -1,9 +1,14 @@
+import React from "react";
+import PageHeader from "../components/PageHeader";
 
 function HomePage() {
     return (
-        <p>
-            Test test test test test
-        </p>
+        <>
+            <PageHeader title="HOME" />
+            <p>
+                Test test test test test
+            </p>
+        </>
     )
 }
 
