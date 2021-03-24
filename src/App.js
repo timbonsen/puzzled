@@ -1,26 +1,30 @@
 
+import React from 'react';
+import TopMenu from './components/TopMenu';
+import Puzzle from './components/Puzzle';
+import SearchPage from './pages/Search';
+import HomePage from './pages/Home';
+import UploadPage from './pages/Upload';
 import './App.css';
-import logo from './assets/icons/JigsawFat.png'
-import accountButton from './assets/icons/AccountFat.png'
+
+import {
+    BrowserRouter as Router, Switch, Route
+} from "react-router-dom";
 
 function App() {
     return (
-        <>
-            <div className="navContainer">
-                <div className="navBar">
-                    <nav>
-                        <div className="logoContainer">
-                            <img className="puzzledLogo" src={logo} alt="Puzzled Logo"/>
-                            <div className="puzzledName">PUZZLED</div>
-                        </div>
-                        <a className="navButton">HOME</a>
-                        <a className="navButton">UPLOAD</a>
-                        <a className="navButton">SEARCH</a>
-                    </nav>
-                    <img className="accountButton" src={accountButton} alt="Account Button"/>
-                </div>
-            </div>
-        </>
+        <Router>
+            <TopMenu />
+            <Route exact path="/">
+                <HomePage />
+            </Route>
+            <Route path="/search">
+                <SearchPage />
+            </Route>
+            <Route path="/upload">
+                <UploadPage />
+            </Route>
+        </Router>
 
   );
 }
