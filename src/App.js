@@ -10,6 +10,7 @@ import SignUpPage from "./pages/signup/Signup";
 import './App.css';
 import './pages/upload/Upload.css';
 import { Route, Switch } from "react-router-dom";
+import PuzzlePage from "./pages/puzzle/Puzzle";
 
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
                 </Route>
                 <Route path="/account">
                     <AccountPage/>
+                </Route>
+                <Route path="/puzzle">
+                    <PuzzlePage/>
                 </Route>
             </Switch>
         </>

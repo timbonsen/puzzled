@@ -33,19 +33,32 @@ function SignInPage() {
                         <label htmlFor="email-field">
                             Emailadres:
                             <input
-                                type="text"
+                                type="email"
                                 id="email-field"
                                 name="email"
-                                {...register("email")}
+                                ref={register("email", {
+                                        required: {
+                                            value: true,
+                                            message: "Je moet een geldig mailadres opgeven"
+                                        }
+                                    }
+                                )}
                             />
                         </label>
                         <label htmlFor="password-field">
                             Wachtwoord:
                             <input
-                                type="text"
+                                type="password"
                                 id="password-field"
                                 name="password"
-                                {...register("password")}/>
+                                ref={register("password", {
+                                        required: {
+                                            value: true,
+                                            message: "Je moet je wachtwoord invullen"
+                                        }
+                                    }
+                                )}
+                            />
                         </label>
                         <button type="submit" className="uploadButton">LOG IN</button>
                     </form>

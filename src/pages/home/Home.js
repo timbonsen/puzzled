@@ -7,9 +7,9 @@ function HomePage() {
         <>
             <PageHeader title="HOME" />
             <div className="pageContainer">
-                <p>
+                <h3>
                     <Link to="/signin">INLOGGEN</Link> OF <Link to="/signup">AANMELDEN</Link>
-                </p>
+                </h3>
             </div>
         </>
     )

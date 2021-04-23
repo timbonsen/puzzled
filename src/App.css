@@ -39,6 +39,7 @@ nav {
   border: #720072 solid;
   border-left-style: none;
   border-right-style: none;
+  text-transform: uppercase;
 }
 
 .pageTitle {
@@ -87,12 +88,26 @@ nav {
 
 .pageContainer {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
 .formContainer {
   display: flex;
   flex-direction: column;
+}
+
+.puzzleImage {
+  max-width: 60%;
+  border: #720072 solid 3px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+h3 {
+  color: #720072;
+  text-transform: uppercase;
+  margin: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
