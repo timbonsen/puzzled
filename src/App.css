@@ -2,13 +2,6 @@
   width: 100px;
 }
 
-.pageContainer {
-  display: flex;
-  justify-content: center;
-  width: 1200px;
-  margin: auto;
-}
-
 h2 {
   margin: 10px;
 }
@@ -90,6 +83,16 @@ nav {
   font-size: x-large;
   font-weight: bold;
   text-decoration: none;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {

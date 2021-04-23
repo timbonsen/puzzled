@@ -1,34 +1,42 @@
 import React from 'react';
 import TopMenu from './components/TopMenu';
-import SearchPage from './pages/Search';
-import HomePage from './pages/Home';
-import UploadPage from './pages/Upload';
-import AccountPage from "./pages/Account";
+import SearchPage from './pages/search/Search';
+import HomePage from './pages/home/Home';
+import UploadPage from './pages/upload/Upload';
+import IsLoggedIn from "./components/functions/IsLoggedIn";
+import AccountPage from "./pages/account/Account";
+import SignInPage from "./pages/signin/SignIn";
+import SignUpPage from "./pages/signup/Signup";
 import './App.css';
+import './pages/upload/Upload.css';
+import { Route, Switch } from "react-router-dom";
 
-import {
-    BrowserRouter as Router, Route, Switch
-} from "react-router-dom";
 
 function App() {
     return (
-        <Router>
-            <TopMenu />
+        <>
+            <TopMenu/>
             <Switch>
-                <Route path="/home">
-                    <HomePage />
+                <Route exact path="/">
+                    <HomePage/>
                 </Route>
-                <Route path="/search">
-                    <SearchPage />
+                <Route exact path="/signin">
+                    <SignInPage/>
+                </Route>
+                <Route exact path="/signup">
+                    <SignUpPage/>
+                </Route>
+                <Route exact path="/search">
+                    <SearchPage/>
                 </Route>
                 <Route path="/upload">
-                    <UploadPage />
+                    <UploadPage/>
                 </Route>
                 <Route path="/account">
-                    <AccountPage />
+                    <AccountPage/>
                 </Route>
             </Switch>
-        </Router>
+        </>
     );
 }
 

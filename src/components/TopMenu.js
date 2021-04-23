@@ -10,11 +10,11 @@ function TopMenu() {
                 <nav>
                     <div className="logoContainer">
                         <img className="puzzledLogo" src={logo} alt="Puzzled Logo"/>
-                        <NavLink to="/home" className="puzzledName">PUZZLED</NavLink>
+                        <NavLink exact to="/" className="puzzledName">PUZZLED</NavLink>
                     </div>
-                    <NavLink to="/home" className="navButton" activeClassName="navButtonActive">HOME</NavLink>
+                    <NavLink exact to="/" className="navButton" activeClassName="navButtonActive">HOME</NavLink>
                     <NavLink to="/upload" className="navButton" activeClassName="navButtonActive">UPLOAD</NavLink>
-                    <NavLink to="/search" className="navButton" activeClassName="navButtonActive">SEARCH</NavLink>
+                    <NavLink exact to="/search" className="navButton" activeClassName="navButtonActive">SEARCH</NavLink>
                 </nav>
                 <NavLink to="/account" classname="accountButton">
                     <img className="accountButtonImage" src={accountButton} alt="Account Button"/>
