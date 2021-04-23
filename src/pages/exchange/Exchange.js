@@ -1,9 +1,15 @@
 
 function ExchangePage() {
     return (
-        <p>
-            Test test test test test
-        </p>
+        <>
+            <div className="pageContainer">
+                <div className="pageContent">
+                    <p>
+                        Test test test test test
+                    </p>
+                </div>
+            </div>
+        </>
     )
 }
 

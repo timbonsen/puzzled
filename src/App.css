@@ -1,3 +1,17 @@
+a {
+  text-decoration: none;
+  color: #e06f2d;
+}
+
+p {
+  color: #720072;
+  border: #720072 solid 2px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  max-width: 800px;
+}
+
 .submitButton {
   width: 100px;
 }
@@ -39,16 +53,11 @@ nav {
   border: #720072 solid;
   border-left-style: none;
   border-right-style: none;
-  text-transform: uppercase;
 }
 
 .pageTitle {
   display: flex;
   justify-content: center;
-  font-family: "Leelawadee UI";
-  font-size: large;
-  font-weight: bold;
-  color: #720072;
 }
 
 .logoContainer {
@@ -86,10 +95,16 @@ nav {
   text-decoration: none;
 }
 
-.pageContainer {
+.pageContent {
   display: flex;
   align-items: center;
   flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.pageContainer {
+  padding: 10px;
 }
 
 .formContainer {
@@ -105,9 +120,20 @@ nav {
 }
 
 h3 {
+  display: flex;
+  justify-content: center;
   color: #720072;
   text-transform: uppercase;
   margin: 10px;
+  font-family: "Leelawadee UI";
+  font-size: larger;
+}
+
+.pageLink {
+  color: #ffbf9a;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
