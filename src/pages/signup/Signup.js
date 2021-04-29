@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 
 function SignUpPage() {
@@ -9,12 +9,12 @@ function SignUpPage() {
     const history = useHistory();
 
     async function onSubmit(data) {
-        /*try {
-            const result = await axios.post('http://localhost:3000/register', data);
+        try {
+            const result = await axios.post('https://localhost:8443/register', data);
             console.log(result)
         } catch (e) {
             console.error(e);
-        }*/
+        }
     }
 
     return (
@@ -34,21 +34,6 @@ function SignUpPage() {
                                     {...register("username")}
                                 />
                             </label>
-                            <label htmlFor="email-field">
-                                Email:
-                                <input
-                                    type="email"
-                                    id="email-field"
-                                    name="email"
-                                    ref={register("email", {
-                                            required: {
-                                                value: true,
-                                                message: "Je moet een geldig mailadres opgeven"
-                                            }
-                                        }
-                                    )}
-                                />
-                            </label>
                             <label htmlFor="password-field">
                                 Wachtwoord:
                                 <input
@@ -64,10 +49,43 @@ function SignUpPage() {
                                     )}
                                 />
                             </label>
+                            <label htmlFor="email-field">
+                                Email:
+                                <input
+                                    type="email"
+                                    id="email-field"
+                                    name="email"
+                                    ref={register("email", {
+                                            required: {
+                                                value: true,
+                                                message: "Je moet een geldig mailadres opgeven"
+                                            }
+                                        }
+                                    )}
+                                />
+                            </label>
+                            <label htmlFor="firstname-field">
+                                Voornaam:
+                                <input
+                                    type="text"
+                                    id="firstname-field"
+                                    name="firstname"
+                                    ref={register("firstname")}
+                                />
+                            </label>
+                            <label htmlFor="lastname-field">
+                                Achternaam:
+                                <input
+                                    type="text"
+                                    id="lastname-field"
+                                    name="lastname"
+                                    ref={register("lastname")}
+                                />
+                            </label>
                             <button type="submit" className="uploadButton">REGISTREER</button>
                         </form>
                     </div>
-                    <p>Heeft U al een account? Klik dan <Link to="/signin" classname="link">HIER</Link> om in te loggen.</p>
+                    <p>Heeft U al een account? Klik dan <Link to="/signin" className="link">HIER</Link> om in te loggen.</p>
                 </div>
             </div>
         </>

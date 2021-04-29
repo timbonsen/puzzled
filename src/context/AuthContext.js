@@ -3,28 +3,26 @@ import { useHistory } from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import axios from "axios";
 
-/*
 export const AuthContext = createContext({})
 
 function AuthContextProvider({ children }) {
     const history = useHistory();
     const [authState, setAuthState] = useState({
         user: null,
-        status: 'pending'
+        status: 'done'
     })
 
-    async function fetchUserData(jwtToken) {
-
-        const decoded = jwt_Decode(jwtToken);
-        const userId = decoded.sub;
+    async function fetchUserData(decoded, jwtToken) {
+        console.log(jwtToken)
+        const username = decoded.username;
 
         setAuthState({
             user: null,
-            status: 'done'
+            status: 'pending'
         })
 
-        /!*try {
-            const result = await axios.get(`http://localhost:3000/600/users/${userId}`, {
+        try {
+            const result = await axios.get(`https://localhost:8443/users/${username}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`
@@ -34,14 +32,13 @@ function AuthContextProvider({ children }) {
             setAuthState({
                 user: {
                     username: result.data.username,
-                    email: result.data.email,
-                    id: result.data.id
+                    email: result.data.email
                 },
                 status: 'done'
             })
         } catch (e) {
             console.error(e);
-        }*!/
+        }
     }
 
     useEffect(() => {
@@ -49,7 +46,7 @@ function AuthContextProvider({ children }) {
 
         if (token !== undefined && authState.user === null) {
 
-            fetchUserData(token);
+/*            fetchUserData(token);*/
 
         } else {
             setAuthState({
@@ -57,14 +54,16 @@ function AuthContextProvider({ children }) {
                 status: 'done'
             })
         }
-    }, [])
+    }, [authState])
 
-    async function login(jwtToken) {
+    function login(jwtToken) {
         localStorage.setItem('token', jwtToken);
+        const decoded = jwt_Decode(jwtToken);
+        console.log(decoded)
 
-        fetchUserData(jwtToken);
+        /*fetchUserData(decoded, jwtToken);*/
 
-        history.push("/account");
+        /*history.push("/account");*/
     }
 
     function logout() {
@@ -93,4 +92,4 @@ function AuthContextProvider({ children }) {
     )
 }
 
-export default AuthContextProvider;*/
+export default AuthContextProvider;

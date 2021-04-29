@@ -5,18 +5,18 @@ import { useForm } from "react-hook-form";
 import {useContext} from "react";
 import PageHeader from "../../components/PageHeader";
 import {Link} from "react-router-dom";
-/*import { AuthContext } from "../../context/AuthContext";*/
+import { AuthContext } from "../../context/AuthContext";
 
 function SignInPage() {
-/*    const { login } = useContext(AuthContext);*/
-    const { handleSubmit, register } = useForm();
+    const { login } = useContext(AuthContext);
+    const { handleSubmit, register, errors } = useForm();
 
     async function onSubmit(data) {
-        /*console.log(data);
-        try {
-            const result = await axios.post('http://localhost:3000/login', data);
+        console.log(data);
+        /*try {
+            const result = await axios.post('https://localhost:8443/authenticate', data);
 
-            login(result.data.accessToken);
+            login(result.data.jwt);
 
         } catch (e) {
             console.error(e);
@@ -28,23 +28,18 @@ function SignInPage() {
             <PageHeader title="INLOGGEN"/>
             <div className="pageContainer">
                 <div className="pageContent">
-                    <p>Vul hier onder uw emailadres en wachtwoord in om U aan te melden.</p>
+                    <p>Vul hier onder uw username en wachtwoord in om U aan te melden.</p>
                     <div>
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
-                            <label htmlFor="email-field">
-                                Emailadres:
+                            <label htmlFor="username-field">
+                                Username:
                                 <input
-                                    type="email"
-                                    id="email-field"
-                                    name="email"
-                                    ref={register("email", {
-                                            required: {
-                                                value: true,
-                                                message: "Je moet een geldig mailadres opgeven"
-                                            }
-                                        }
-                                    )}
+                                    type="text"
+                                    id="username-field"
+                                    name="username"
+                                    {...register("username")}
                                 />
+                                {errors.username && <span>{errors.username.message}</span>}
                             </label>
                             <label htmlFor="password-field">
                                 Wachtwoord:
@@ -52,19 +47,14 @@ function SignInPage() {
                                     type="password"
                                     id="password-field"
                                     name="password"
-                                    ref={register("password", {
-                                            required: {
-                                                value: true,
-                                                message: "Je moet je wachtwoord invullen"
-                                            }
-                                        }
-                                    )}
+                                    {...register("password")}
                                 />
+                                {errors.password && <span>{errors.password.message}</span>}
                             </label>
-                            <button type="submit" className="uploadButton">LOG IN</button>
+                            <button type="submit" value="Submit" className="uploadButton">LOG IN</button>
                         </form>
                     </div>
-                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" classname="link">HIER</Link> om U aan te melden.</p>
+                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te melden.</p>
                 </div>
             </div>
         </>
