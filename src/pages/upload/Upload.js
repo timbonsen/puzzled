@@ -4,7 +4,7 @@ import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
 
 function UploadPage() {
-    const { handleSubmit, errors, register } = useForm();
+    const { handleSubmit, formState: { errors }, register } = useForm();
 
     function onFormSubmit(data) {
         console.log(data)

@@ -5,16 +5,17 @@ import { Link, useHistory } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 
 function SignUpPage() {
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit,  register, formState: { errors } } = useForm();
     const history = useHistory();
 
     async function onSubmit(data) {
-        try {
+        console.log(data)
+        /*try {
             const result = await axios.post('https://localhost:8443/register', data);
             console.log(result)
         } catch (e) {
             console.error(e);
-        }
+        }*/
     }
 
     return (
@@ -31,7 +32,12 @@ function SignUpPage() {
                                     type="text"
                                     id="username-field"
                                     name="username"
-                                    {...register("username")}
+                                    {...register("username", {
+                                        required: {
+                                            value: true,
+                                            message: "Voer een gebruikersnaam in"
+                                        }
+                                    })}
                                 />
                             </label>
                             <label htmlFor="password-field">
@@ -40,14 +46,15 @@ function SignUpPage() {
                                     type="password"
                                     id="password-field"
                                     name="password"
-                                    ref={register("password", {
+                                    {...register("password", {
                                             required: {
                                                 value: true,
-                                                message: "Je moet je wachtwoord invullen"
+                                                message: "Voer een wachtwoord in"
                                             }
                                         }
                                     )}
                                 />
+                                {errors.password && <span>{errors.password.message}</span>}
                             </label>
                             <label htmlFor="email-field">
                                 Email:
@@ -55,14 +62,15 @@ function SignUpPage() {
                                     type="email"
                                     id="email-field"
                                     name="email"
-                                    ref={register("email", {
+                                    {...register("email", {
                                             required: {
                                                 value: true,
-                                                message: "Je moet een geldig mailadres opgeven"
+                                                message: "Voer een geldig emailadres in"
                                             }
                                         }
                                     )}
                                 />
+                                {errors.email && <span>{errors.email.message}</span>}
                             </label>
                             <label htmlFor="firstname-field">
                                 Voornaam:
@@ -70,7 +78,7 @@ function SignUpPage() {
                                     type="text"
                                     id="firstname-field"
                                     name="firstname"
-                                    ref={register("firstname")}
+                                    {...register("firstname")}
                                 />
                             </label>
                             <label htmlFor="lastname-field">
@@ -79,7 +87,7 @@ function SignUpPage() {
                                     type="text"
                                     id="lastname-field"
                                     name="lastname"
-                                    ref={register("lastname")}
+                                    {...register("lastname")}
                                 />
                             </label>
                             <button type="submit" className="uploadButton">REGISTREER</button>

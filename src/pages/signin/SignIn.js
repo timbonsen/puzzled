@@ -1,7 +1,6 @@
-
 import React from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {useContext} from "react";
 import PageHeader from "../../components/PageHeader";
 import {Link} from "react-router-dom";
@@ -9,8 +8,9 @@ import { AuthContext } from "../../context/AuthContext";
 
 function SignInPage() {
     const { login } = useContext(AuthContext);
-    const { handleSubmit, register, errors } = useForm();
+    const {handleSubmit, register, formState: {errors}} = useForm();
 
+    /*const onSubmit = data => console.log(data)*/
     async function onSubmit(data) {
         console.log(data);
         /*try {
@@ -37,7 +37,11 @@ function SignInPage() {
                                     type="text"
                                     id="username-field"
                                     name="username"
-                                    {...register("username")}
+                                    {...register("username", {
+                                            required: true,
+                                            message: "Je moet een geldige username invoeren"
+                                        }
+                                    )}
                                 />
                                 {errors.username && <span>{errors.username.message}</span>}
                             </label>
@@ -47,19 +51,24 @@ function SignInPage() {
                                     type="password"
                                     id="password-field"
                                     name="password"
-                                    {...register("password")}
+                                    {...register("password", {
+                                            required: true,
+                                            message: "Je moet je wachtwoord invullen"
+                                        }
+                                    )}
                                 />
                                 {errors.password && <span>{errors.password.message}</span>}
                             </label>
                             <button type="submit" value="Submit" className="uploadButton">LOG IN</button>
                         </form>
                     </div>
-                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te melden.</p>
+                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te
+                        melden.</p>
                 </div>
             </div>
         </>
 
-    )
+    );
 }
 
 export default SignInPage;

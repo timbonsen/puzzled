@@ -3,7 +3,7 @@ import TopMenu from './components/TopMenu';
 import SearchPage from './pages/search/Search';
 import HomePage from './pages/home/Home';
 import UploadPage from './pages/upload/Upload';
-import IsLoggedIn from "./components/functions/IsLoggedIn";
+/*import IsLoggedIn from "./components/functions/IsLoggedIn";*/
 import AccountPage from "./pages/account/Account";
 import SignInPage from "./pages/signin/SignIn";
 import SignUpPage from "./pages/signup/Signup";
