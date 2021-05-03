@@ -25,7 +25,7 @@ function UploadPage() {
                                     name="title"
                                     className="uploadInput"
                                     id="puzzle-title"
-                                    ref={register({
+                                    {...register("title",{
                                             required: {
                                                 value: true,
                                                 message: 'Er moet een titel voor de puzzel meegegeven worden.'
@@ -38,12 +38,12 @@ function UploadPage() {
                                     )}/>
                                 {errors.title &&
                                 <h3>{errors.title.message}</h3>}
-                                <label htmlFor="puzzle-brand">MERK</label>
+                                <label htmlFor="puzzleBrand">MERK</label>
                                 <select
-                                    name="brand"
+                                    name="puzzleBrand"
                                     className="uploadInput"
-                                    id="puzzle-brand"
-                                    ref={register}
+                                    id="puzzleBrand"
+                                    {...register("puzzleBrand")}
                                 >
                                     <option value="king">King</option>
                                     <option value="ravensburger">Ravensburger</option>
@@ -53,12 +53,12 @@ function UploadPage() {
                                     <option value="castorland">Castorland</option>
                                     <option value="Clementoni">Clementoni</option>
                                 </select>
-                                <label htmlFor="number-of-pieces">AANTAL PUZZELSTUKJES</label>
+                                <label htmlFor="numberOfPieces">AANTAL PUZZELSTUKJES</label>
                                 <select
-                                    name="pieces"
+                                    name="numberOfPieces"
                                     className="uploadInput"
-                                    id="number-of-pieces"
-                                    ref={register}
+                                    id="numberOfPieces"
+                                    {...register("numberOfPieces")}
                                 >
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -70,27 +70,27 @@ function UploadPage() {
                                     <option value="2000+">2000+</option>
                                     <option value="overig">Overig</option>
                                 </select>
-                                <label htmlFor="puzzle-height">HOOGTE IN CENTIMETERS</label>
+                                <label htmlFor="puzzleHeight">HOOGTE IN CENTIMETERS</label>
                                 <input
                                     type="number"
-                                    name="puzzle-height"
+                                    name="puzzleHeight"
                                     className="uploadInput"
-                                    id="puzzle-height"
-                                    ref={register}/>
-                                <label htmlFor="puzzle-width">BREEDTE IN CENTIMETERS</label>
+                                    id="puzzleHeight"
+                                    {...register("puzzleHeight")}/>
+                                <label htmlFor="puzzleWidth">BREEDTE IN CENTIMETERS</label>
                                 <input
                                     type="number"
-                                    name="puzzle-width"
+                                    name="puzzleWidth"
                                     className="uploadInput"
-                                    id="puzzle-width"
-                                    ref={register}/>
+                                    id="puzzleWidth"
+                                    {...register("puzzleWidth")}/>
                                 <label htmlFor="eanCode">EAN CODE (BARCODE)</label>
                                 <input
                                     type="number"
                                     name="eanCode"
                                     className="uploadInput"
                                     id="eanCode"
-                                    ref={register({
+                                    {...register("eanCode",{
                                             required: {
                                                 value: true,
                                                 message: 'De EAN code moet meegegeven worden. Dit zijn de 13 cijfers onder de streepjescode.'
@@ -110,13 +110,19 @@ function UploadPage() {
                             </div>
                             <div className="uploadFormRight">
                                 <label htmlFor="puzzle-image">AFBEELDING</label>
-                                <input type="file" className="imageUpload" name="img" accept="image/*"/>
+                                <input
+                                    type="file"
+                                    multiple="false"
+                                    className="imageUpload"
+                                    name="img"
+                                    accept="image/*"
+                                    {...register("img")}/>
                                 <label htmlFor="tag">CATEGORIE</label>
                                 <select
                                     name="tag1"
                                     className="uploadInput"
                                     id="tag1"
-                                    ref={register}
+                                    {...register("tag1")}
                                 >
                                     <option value="nature">Natuur</option>
                                     <option value="jvhaasteren">Jan Van Haasteren</option>
@@ -128,7 +134,10 @@ function UploadPage() {
                                     <option value="3d">3D</option>
                                 </select>
                                 <label htmlFor="puzzle-activated">ACTIVEER</label>
-                                <input type="checkbox"/>
+                                <input
+                                    type="checkbox"
+                                    name="activated"
+                                    {...register("activated")}/>
                                 <button className="uploadButton" type="submit">
                                     Uploaden
                                 </button>
