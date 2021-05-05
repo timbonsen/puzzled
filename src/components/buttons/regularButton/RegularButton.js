@@ -1,9 +1,14 @@
 import React from "react";
 import './regularButton.css';
 
-function RegularButton({ text }) {
+function RegularButton({text}) {
+
+
     return (
-        <button type="button" className="regularButton">{text}</button>
+        <button
+            type="button"
+            className="regularButton"
+        >{text}</button>
     );
 }
 

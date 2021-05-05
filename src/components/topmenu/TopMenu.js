@@ -17,7 +17,7 @@ function TopMenu() {
                     <NavLink to="/upload" className="navButton" activeClassName="navButtonActive">UPLOAD</NavLink>
                     <NavLink exact to="/search" className="navButton" activeClassName="navButtonActive">SEARCH</NavLink>
                     <NavLink exact to="/puzzle" className="navButton" activeClassName="navButtonActive">PUZZLE</NavLink>
-                    <NavLink to="/exchange" className="navButton" activeClassName="navButtonActive">EXCHANGE</NavLink>
+                    <NavLink to="/exchange/proposal" className="navButton" activeClassName="navButtonActive">EXCHANGE</NavLink>
                 </nav>
                 <NavLink to="/account" className="accountButton">
                     <img className="accountButtonImage" src={accountButton} alt="Account Button"/>

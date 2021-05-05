@@ -1,4 +1,6 @@
 .regularButton {
+    display: flex;
+    justify-content: center;
     background-color: #ffceb5;
     font-family: "Leelawadee UI";
     font-weight: bold;

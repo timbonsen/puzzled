@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import PageHeader from "../../components/PageHeader";
-import {Link} from "react-router-dom";
 import LoginHeader from "../../components/LoginHeader";
 import {AuthContext} from "../../context/AuthContext";
+import image1 from "../../assets/images/KingNotreDam.jpg"
+import image2 from "../../assets/images/VanHaasterenBibliotheek.jpg"
+import PuzzleCard from "../../components/puzzleCard/PuzzleCard";
 
 function AccountPage() {
 
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     console.log(user)
     if (user === null) {
         return (
@@ -38,7 +40,11 @@ function AccountPage() {
                         Land: Pandaland
                     </p>
                     <h3>Mijn puzzels</h3>
-                    <button className="uploadButton" type="button">LOG UIT</button>
+                    <div className="puzzleContainer">
+                        <PuzzleCard image={image1} title="puzzel titel" />
+                        <PuzzleCard image={image2} title="puzzel titel" />
+                    </div>
+                    <button className="uploadButton" type="button" onClick={logout}>LOG UIT</button>
                     <button className="uploadButton" type="button">VERWIJDER ACCOUNT</button>
                 </div>
             </div>

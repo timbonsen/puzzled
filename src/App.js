@@ -10,7 +10,8 @@ import './App.css';
 import './pages/upload/Upload.css';
 import { Route, Switch } from "react-router-dom";
 import PuzzlePage from "./pages/puzzle/PuzzlePage";
-import ExchangePage from "./pages/exchange/Exchange";
+import ExchangeProposal from "./pages/exchange/ExchangeProposal";
+import ExchangeAccepted from "./pages/exchange/ExchangeAccepted";
 
 
 function App() {
@@ -39,8 +40,11 @@ function App() {
                 <Route path="/puzzle">
                     <PuzzlePage/>
                 </Route>
-                <Route path="/exchange">
-                    <ExchangePage />
+                <Route exact path="/exchange/proposal">
+                    <ExchangeProposal />
+                </Route>
+                <Route exact path="/exchange/accepted">
+                    <ExchangeAccepted />
                 </Route>
             </Switch>
         </>
