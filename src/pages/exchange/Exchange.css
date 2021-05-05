@@ -1,0 +1,22 @@
+.exchangeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.exchangeLeft, .exchangeRight {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+    max-width: 700px;
+    margin: 10px;
+    border: solid #720072 3px;
+    border-radius: 10px;
+}
+
+.buttonBar {
+    display: flex;
+    flex-wrap: wrap;
+}
