@@ -10,12 +10,12 @@ function SignUpPage() {
 
     async function onSubmit(data) {
         console.log(data)
-        /*try {
+        try {
             const result = await axios.post('https://localhost:8443/register', data);
             console.log(result)
         } catch (e) {
             console.error(e);
-        }*/
+        }
     }
 
     return (

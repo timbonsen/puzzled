@@ -1,20 +1,20 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import axios from "axios";
 
 export const AuthContext = createContext({})
 
-function AuthContextProvider({ children }) {
+function AuthContextProvider({children}) {
     const history = useHistory();
     const [authState, setAuthState] = useState({
         user: null,
         status: 'done'
     })
 
-    async function fetchUserData(decoded, jwtToken) {
-        console.log(jwtToken)
-        const username = decoded.username;
+    async function fetchUserData(jwtToken) {
+        const decoded = jwt_Decode(jwtToken);
+        const username = decoded.sub;
 
         setAuthState({
             user: null,
@@ -32,7 +32,10 @@ function AuthContextProvider({ children }) {
             setAuthState({
                 user: {
                     username: result.data.username,
-                    email: result.data.email
+                    emailAddress: result.data.emailAddress,
+                    firstName: result.data.firstName,
+                    fullName: result.data.fullName,
+                    lastName: result.data.lastName
                 },
                 status: 'done'
             })
@@ -41,29 +44,25 @@ function AuthContextProvider({ children }) {
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         const token = localStorage.getItem('token');
 
         if (token !== undefined && authState.user === null) {
-
-/*            fetchUserData(token);*/
-
+            fetchUserData(token);
         } else {
             setAuthState({
-                user: null,
                 status: 'done'
             })
         }
-    }, [authState])
+    }, [authState])*/
 
     function login(jwtToken) {
         localStorage.setItem('token', jwtToken);
-        const decoded = jwt_Decode(jwtToken);
-        console.log(decoded)
 
-        /*fetchUserData(decoded, jwtToken);*/
-
-        /*history.push("/account");*/
+        fetchUserData(jwtToken);
+        setTimeout(() => {
+            history.push("/account");
+        }, 1000);
     }
 
     function logout() {
@@ -73,6 +72,9 @@ function AuthContextProvider({ children }) {
             user: null,
             status: 'done'
         })
+        setTimeout(() => {
+            history.push("/");
+        },1000);
     }
 
     const data = {

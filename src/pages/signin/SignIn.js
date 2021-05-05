@@ -13,14 +13,14 @@ function SignInPage() {
     /*const onSubmit = data => console.log(data)*/
     async function onSubmit(data) {
         console.log(data);
-        /*try {
+        try {
             const result = await axios.post('https://localhost:8443/authenticate', data);
-
+            console.log(result.data.jwt);
             login(result.data.jwt);
 
         } catch (e) {
             console.error(e);
-        }*/
+        }
     }
 
     return (

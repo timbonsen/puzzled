@@ -1,16 +1,16 @@
 import React from 'react';
-import TopMenu from './components/TopMenu';
+import TopMenu from './components/topmenu/TopMenu';
 import SearchPage from './pages/search/Search';
 import HomePage from './pages/home/Home';
 import UploadPage from './pages/upload/Upload';
-/*import IsLoggedIn from "./components/functions/IsLoggedIn";*/
 import AccountPage from "./pages/account/Account";
 import SignInPage from "./pages/signin/SignIn";
 import SignUpPage from "./pages/signup/Signup";
 import './App.css';
 import './pages/upload/Upload.css';
 import { Route, Switch } from "react-router-dom";
-import PuzzlePage from "./pages/puzzle/Puzzle";
+import PuzzlePage from "./pages/puzzle/PuzzlePage";
+import ExchangePage from "./pages/exchange/Exchange";
 
 
 function App() {
@@ -38,6 +38,9 @@ function App() {
                 </Route>
                 <Route path="/puzzle">
                     <PuzzlePage/>
+                </Route>
+                <Route path="/exchange">
+                    <ExchangePage />
                 </Route>
             </Switch>
         </>
