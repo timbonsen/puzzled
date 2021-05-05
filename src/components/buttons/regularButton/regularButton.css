@@ -1,0 +1,12 @@
+.regularButton {
+    background-color: #ffceb5;
+    font-family: "Leelawadee UI";
+    font-weight: bold;
+    font-size: large;
+    color: #720072;
+    text-transform: uppercase;
+    border: #ffbf9a solid 3px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 250px;
+}
