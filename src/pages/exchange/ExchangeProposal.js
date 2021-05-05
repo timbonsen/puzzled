@@ -6,8 +6,9 @@ import image3 from '../../assets/images/JumboCats.jpg'
 import image4 from '../../assets/images/WasgijTerras.jpg'
 import RegularButton from "../../components/buttons/regularButton/RegularButton";
 import PuzzleCard from "../../components/puzzleCard/PuzzleCard";
+import {Link} from "react-router-dom";
 
-function ExchangePage() {
+function ExchangeProposal() {
     return (
         <>
             <PageHeader title="Ruilverzoek" />
@@ -17,21 +18,25 @@ function ExchangePage() {
                         <div className="exchangeLeft">
                             <h3>user a</h3>
                             <h4>Verstuurd de volgende puzzels naar User B</h4>
-                            <PuzzleCard image={image1} title="Titel puzzel"/>
-                            <PuzzleCard image={image3} title="Titel puzzel"/>
+                            <div className="puzzleContainer">
+                                <PuzzleCard image={image1} title="Titel puzzel"/>
+                                <PuzzleCard image={image3} title="Titel puzzel"/>
+                            </div>
                             <RegularButton text="puzzel toevoegen"/>
                         </div>
                         <div className="exchangeRight">
                             <h3>user b</h3>
                             <h4>Verstuurd de volgende puzzels naar User A</h4>
-                            <PuzzleCard image={image4} title="Titel puzzel"/>
-                            <PuzzleCard image={image2} title="Titel puzzel"/>
+                            <div className="puzzleContainer">
+                                <PuzzleCard image={image4} title="Titel puzzel"/>
+                                <PuzzleCard image={image2} title="Titel puzzel"/>
+                            </div>
                             <RegularButton text="puzzel toevoegen"/>
                         </div>
                     </div>
                     <div className="buttonBar">
-                        <RegularButton text="accepteren"/>
-                        <RegularButton text="afwijzen"/>
+                        <Link className="regularButton" to="/exchange/accepted">accepteren</Link>
+                        <Link className="regularButton" to="/account">afwijzen</Link>
                     </div>
                 </div>
             </div>
@@ -39,4 +44,4 @@ function ExchangePage() {
     )
 }
 
-export default ExchangePage;
+export default ExchangeProposal;

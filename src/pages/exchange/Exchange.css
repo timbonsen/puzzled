@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-.exchangeLeft, .exchangeRight {
+.exchangeLeft, .exchangeRight, .exchangeSend {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -12,8 +12,16 @@
     min-width: 500px;
     max-width: 700px;
     margin: 10px;
+}
+
+.exchangeLeft, .exchangeRight {
     border: solid #720072 3px;
     border-radius: 10px;
+}
+
+.puzzleContainer {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .buttonBar {
