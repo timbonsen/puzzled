@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, /*useContext, useEffect,*/ useState} from "react";
 import {useHistory} from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import axios from "axios";
@@ -32,10 +32,10 @@ function AuthContextProvider({children}) {
             setAuthState({
                 user: {
                     username: result.data.username,
-                    emailAddress: result.data.emailAddress,
-                    firstName: result.data.firstName,
-                    fullName: result.data.fullName,
-                    lastName: result.data.lastName
+                    email: result.data.email,
+                    firstname: result.data.firstname,
+                    fullname: result.data.fullname,
+                    lastname: result.data.lastname
                 },
                 status: 'done'
             })

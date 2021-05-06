@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
 import {AuthContext} from "../../context/AuthContext";
@@ -29,8 +29,8 @@ function AccountPage() {
                 <div className="pageContent">
                     <h3>Mijn gegevens</h3>
                     <p>
-                        Naam: {user.fullName}<br/>
-                        Emailadres: {user.emailAddress}
+                        Naam: {user.fullname}<br/>
+                        Emailadres: {user.email}
                     </p>
                     <h3>Mijn adres</h3>
                     <p>
