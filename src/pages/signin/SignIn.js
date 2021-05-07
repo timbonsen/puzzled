@@ -32,19 +32,21 @@ function SignInPage() {
                     <div>
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
                             <label htmlFor="username-field">
-                                Username:
+                                Gebruikersnaam:
                                 <input
                                     type="text"
                                     id="username-field"
                                     name="username"
                                     {...register("username", {
-                                            required: true,
-                                            message: "Je moet een geldige username invoeren"
+                                            required: {
+                                                value: true,
+                                                message: "Voer een geldige gebruikersnaam in"
+                                            }
                                         }
                                     )}
                                 />
-                                {errors.username && <span>{errors.username.message}</span>}
                             </label>
+                            {errors.username && <span className="errorMessage">{errors.username.message}</span>}
                             <label htmlFor="password-field">
                                 Wachtwoord:
                                 <input
@@ -52,13 +54,15 @@ function SignInPage() {
                                     id="password-field"
                                     name="password"
                                     {...register("password", {
-                                            required: true,
-                                            message: "Je moet je wachtwoord invullen"
+                                            required: {
+                                                value: true,
+                                                message: "Voer een wachtwoord in"
+                                            }
                                         }
                                     )}
                                 />
-                                {errors.password && <span>{errors.password.message}</span>}
                             </label>
+                            {errors.password && <span className="errorMessage">{errors.password.message}</span>}
                             <button type="submit" value="Submit" className="uploadButton">LOG IN</button>
                         </form>
                     </div>

@@ -38,6 +38,7 @@ function SignUpPage() {
                                         }
                                     })}
                                 />
+                                {errors.username && <span>{errors.username.message}</span>}
                             </label>
                             <label htmlFor="password-field">
                                 Wachtwoord:
