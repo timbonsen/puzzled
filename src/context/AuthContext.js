@@ -29,16 +29,37 @@ function AuthContextProvider({children}) {
                 }
             })
             console.log(result);
+            if (result.data.address != null) {
+                setAuthState({
+                    user: {
+                        username: result.data.username,
+                        email: result.data.email,
+                        firstname: result.data.firstname,
+                        fullname: result.data.fullname,
+                        lastname: result.data.lastname,
+                        address: {
+                            streetName: result.data.address.streetName,
+                            houseNumber: result.data.address.houseNumber,
+                            postalCode: result.data.address.postalCode,
+                            city: result.data.address.city,
+                            country: result.data.address.country
+                        }
+                    },
+                    status: 'done'
+                })
+            }
             setAuthState({
                 user: {
                     username: result.data.username,
                     email: result.data.email,
                     firstname: result.data.firstname,
                     fullname: result.data.fullname,
-                    lastname: result.data.lastname
+                    lastname: result.data.lastname,
+                    address: result.data.address
                 },
                 status: 'done'
             })
+
         } catch (e) {
             console.error(e);
         }
@@ -72,9 +93,10 @@ function AuthContextProvider({children}) {
             user: null,
             status: 'done'
         })
+        history.push("/logged-out");
         setTimeout(() => {
             history.push("/");
-        },1000);
+        },2000);
     }
 
     const data = {

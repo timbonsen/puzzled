@@ -12,6 +12,8 @@ import { Route, Switch } from "react-router-dom";
 import PuzzlePage from "./pages/puzzle/PuzzlePage";
 import ExchangeProposal from "./pages/exchange/ExchangeProposal";
 import ExchangeAccepted from "./pages/exchange/ExchangeAccepted";
+import RegisterAddress from "./pages/registerAddress/RegisterAddress";
+import HasLoggedOut from "./pages/hasLoggedOut/HasLoggedOut";
 
 
 function App() {
@@ -45,6 +47,12 @@ function App() {
                 </Route>
                 <Route exact path="/exchange/accepted">
                     <ExchangeAccepted />
+                </Route>
+                <Route path="/register-address">
+                    <RegisterAddress />
+                </Route>
+                <Route path="/logged-out">
+                    <HasLoggedOut />
                 </Route>
             </Switch>
         </>

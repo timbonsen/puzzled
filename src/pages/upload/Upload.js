@@ -2,12 +2,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
+import axios from "axios";
 
 function UploadPage() {
     const { handleSubmit, formState: { errors }, register } = useForm();
 
-    function onFormSubmit(data) {
+    async function onSubmit(data) {
         console.log(data)
+        try {
+            const result = await axios.post('https://localhost:8443/puzzles/upload', data);
+            console.log(result)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
@@ -16,7 +23,7 @@ function UploadPage() {
             <div className="pageContainer">
                 <div className="pageContent">
                     <LoginHeader />
-                    <form onSubmit={handleSubmit(onFormSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="splitFormContainer">
                             <div className="uploadFormLeft">
                                 <label htmlFor="puzzle-title">TITEL</label>

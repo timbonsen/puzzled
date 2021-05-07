@@ -76,5 +76,9 @@ h4 {
   font-size: large;
 }
 
+.errorMessage {
+  color: red;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 }
