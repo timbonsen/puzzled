@@ -7,15 +7,40 @@ import PageHeader from "../../components/PageHeader";
 
 function RegisterAddress() {
     const {handleSubmit, register, formState: {errors}} = useForm();
-    const {user: {username}} = useContext(AuthContext);
+    const {user, user: {username}, updateUser } = useContext(AuthContext);
 
     async function onSubmit(data) {
         console.log(data);
-        try {
-            const result = await axios.post(`https://localhost:8443/${username}/address`, data);
-            console.log(result)
-        } catch (e) {
-            console.error(e);
+        if (user.address) {
+            try {
+                const result = await axios.put(`https://localhost:8443/users/${username}/address`, data);
+                console.log(result);
+                updateUser();
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            try {
+                const result = await axios.post(`https://localhost:8443/users/${username}/address`, data);
+                console.log(result);
+                updateUser();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    }
+
+    function includeID() {
+        if (user.address) {
+            return(
+                <input
+                    type="hidden"
+                    id="address-id"
+                    name="id"
+                    value={user.address.id}
+                    {...register("id")}
+                />
+            )
         }
     }
 
@@ -29,6 +54,7 @@ function RegisterAddress() {
                         hebt gesloten.</p>
                     <div>
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
+                            {includeID()}
                             <label htmlFor="streetName-field">
                                 Straatnaam:
                                 <input
