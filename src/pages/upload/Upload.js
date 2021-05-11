@@ -1,16 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useForm } from "react-hook-form";
 import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext";
 
 function UploadPage() {
     const { handleSubmit, formState: { errors }, register } = useForm();
+    const { user: { username }} = useContext(AuthContext);
 
     async function onSubmit(data) {
         console.log(data)
         try {
-            const result = await axios.post('https://localhost:8443/puzzles/upload', data);
+            const result = await axios.post(`https://localhost:8443/${username}/upload`, data);
             console.log(result)
         } catch (e) {
             console.error(e);
@@ -119,11 +121,11 @@ function UploadPage() {
                                 <label htmlFor="puzzle-image">AFBEELDING</label>
                                 <input
                                     type="file"
-                                    multiple="false"
+                                    multiple={false}
                                     className="imageUpload"
                                     name="img"
                                     accept="image/*"
-                                    {...register("img")}/>
+                                    {...register("image")}/>
                                 <label htmlFor="tag">CATEGORIE</label>
                                 <select
                                     name="tag1"
