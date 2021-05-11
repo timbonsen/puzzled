@@ -1,17 +1,22 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 
 function SignUpPage() {
     const { handleSubmit,  register, formState: { errors } } = useForm();
+    const history = useHistory();
 
     async function onSubmit(data) {
         console.log(data);
         try {
             const result = await axios.post('https://localhost:8443/register', data);
             console.log(result)
+            history.push("/feedback/register")
+            setTimeout(() => {
+                history.push("/signin")
+            }, 1500)
         } catch (e) {
             console.error(e);
         }

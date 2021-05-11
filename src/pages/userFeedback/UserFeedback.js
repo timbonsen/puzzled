@@ -1,17 +1,17 @@
 import PageHeader from "../../components/PageHeader";
 import React from "react";
 
-function HasLoggedOut() {
+function UserFeedback({ title, text }) {
     return (
         <>
-            <PageHeader title="U bent succesvol uitgelogd!"/>
+            <PageHeader title={title}/>
             <div className="pageContainer">
                 <div className="pageContent">
-                    <p>U word nu automatisch doorgestuurd naar de Homepage</p>
+                    <p>{text}</p>
                 </div>
             </div>
         </>
     )
 }
 
-export default HasLoggedOut;
+export default UserFeedback;

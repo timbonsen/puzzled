@@ -2,6 +2,7 @@ import React, {createContext, /*useContext, useEffect,*/ useState} from "react";
 import {useHistory} from "react-router-dom";
 import jwt_Decode from "jwt-decode";
 import axios from "axios";
+import LoadingPage from "../pages/userFeedback/LoadingPage";
 
 export const AuthContext = createContext({})
 
@@ -38,6 +39,7 @@ function AuthContextProvider({children}) {
                         fullname: result.data.fullname,
                         lastname: result.data.lastname,
                         address: {
+                            id: result.data.address.id,
                             streetName: result.data.address.streetName,
                             houseNumber: result.data.address.houseNumber,
                             postalCode: result.data.address.postalCode,
@@ -81,9 +83,17 @@ function AuthContextProvider({children}) {
         localStorage.setItem('token', jwtToken);
 
         fetchUserData(jwtToken);
+        history.push("/feedback/login")
         setTimeout(() => {
             history.push("/account");
-        }, 1000);
+        }, 1500);
+    }
+
+    function updateUser() {
+        const token = localStorage.getItem('token')
+
+        history.push("/feedback/update");
+        fetchUserData(token).then(() => {history.push("/account")});
     }
 
     function logout() {
@@ -93,7 +103,7 @@ function AuthContextProvider({children}) {
             user: null,
             status: 'done'
         })
-        history.push("/logged-out");
+        history.push("/feedback/logout");
         setTimeout(() => {
             history.push("/");
         },2000);
@@ -103,14 +113,14 @@ function AuthContextProvider({children}) {
         ...authState,
         login: login,
         logout: logout,
-
+        updateUser: updateUser,
     }
 
     return (
         <AuthContext.Provider value={data}>
             {authState.status === 'done'
                 ? children
-                : <p>Loading...</p>
+                : <LoadingPage />
             }
         </AuthContext.Provider>
     )

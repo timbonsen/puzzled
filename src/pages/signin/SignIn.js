@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 function SignInPage() {
     const { login } = useContext(AuthContext);
     const {handleSubmit, register, formState: {errors}} = useForm();
+    let errormessage = "lege error";
 
     /*const onSubmit = data => console.log(data)*/
     async function onSubmit(data) {
@@ -65,6 +66,7 @@ function SignInPage() {
                             {errors.password && <span className="errorMessage">{errors.password.message}</span>}
                             <button type="submit" value="Submit" className="uploadButton">LOG IN</button>
                         </form>
+                        <span>{errormessage}</span>
                     </div>
                     <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te
                         melden.</p>

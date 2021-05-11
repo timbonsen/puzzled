@@ -12,10 +12,10 @@ import { Route, Switch } from "react-router-dom";
 import PuzzlePage from "./pages/puzzle/PuzzlePage";
 import ExchangeProposal from "./pages/exchange/ExchangeProposal";
 import ExchangeAccepted from "./pages/exchange/ExchangeAccepted";
-import RegisterAddress from "./pages/registerAddress/RegisterAddress";
-import HasLoggedOut from "./pages/hasLoggedOut/HasLoggedOut";
+import RegisterAddress from "./pages/address/RegisterAddress";
+import UserFeedback from "./pages/userFeedback/UserFeedback";
 import PrivateRoute from "./components/PrivateRoute";
-
+import WantToDelete from "./pages/userFeedback/WantToDelete";
 
 function App() {
     return (
@@ -55,13 +55,45 @@ function App() {
                         page={<ExchangeAccepted />}
                     />
                 </Route>
-                <Route path="/register-address">
+                <Route path="/address">
                     <PrivateRoute
                         page={<RegisterAddress />}
                         />
                 </Route>
-                <Route path="/logged-out">
-                    <HasLoggedOut />
+                <Route path="/delete-account">
+                    <PrivateRoute
+                        page={<WantToDelete />}
+                    />
+                </Route>
+                <Route exact path="/feedback/logout">
+                    <UserFeedback
+                        title="u bent succesvol uitgelogd"
+                    text="U word nu doorgestuurd naar de Homepage"/>
+                </Route>
+                <Route exact path="/feedback/update">
+                    <UserFeedback
+                        title="uw gegevens zijn succesvol geupdate"
+                        text="U word nu doorgestuurd naar Uw account"/>
+                </Route>
+                <Route exact path="/feedback/login">
+                    <UserFeedback
+                        title="U bent succesvol ingelogd"
+                        text="U word nu doorgestuurd naar Uw account"/>
+                </Route>
+                <Route exact path="/feedback/address">
+                    <UserFeedback
+                        title="Uw adres is toegevoegd"
+                        text="U word nu doorgestuurd naar Uw account"/>
+                </Route>
+                <Route exact path="/feedback/register">
+                    <UserFeedback
+                        title="Uw account is succesvol aangemaakt"
+                        text="U word nu doorgestuurd naar de Login pagina"/>
+                </Route>
+                <Route exact path="/feedback/deleted">
+                    <UserFeedback
+                        title="Uw account is succesvol verwijderd"
+                        text="U word nu doorgestuurd naar de Homepage"/>
                 </Route>
             </Switch>
         </>
