@@ -24,7 +24,6 @@ function UploadPage() {
             <PageHeader title="UPLOAD" />
             <div className="pageContainer">
                 <div className="pageContent">
-                    <LoginHeader />
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="splitFormContainer">
                             <div className="uploadFormLeft">
