@@ -14,6 +14,7 @@ import ExchangeProposal from "./pages/exchange/ExchangeProposal";
 import ExchangeAccepted from "./pages/exchange/ExchangeAccepted";
 import RegisterAddress from "./pages/registerAddress/RegisterAddress";
 import HasLoggedOut from "./pages/hasLoggedOut/HasLoggedOut";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
@@ -34,7 +35,9 @@ function App() {
                     <SearchPage/>
                 </Route>
                 <Route path="/upload">
-                    <UploadPage/>
+                    <PrivateRoute
+                        page={<UploadPage/>}
+                        />
                 </Route>
                 <Route path="/account">
                     <AccountPage/>
@@ -43,13 +46,19 @@ function App() {
                     <PuzzlePage/>
                 </Route>
                 <Route exact path="/exchange/proposal">
-                    <ExchangeProposal />
+                    <PrivateRoute
+                        page={<ExchangeProposal />}
+                        />
                 </Route>
                 <Route exact path="/exchange/accepted">
-                    <ExchangeAccepted />
+                    <PrivateRoute
+                        page={<ExchangeAccepted />}
+                    />
                 </Route>
                 <Route path="/register-address">
-                    <RegisterAddress />
+                    <PrivateRoute
+                        page={<RegisterAddress />}
+                        />
                 </Route>
                 <Route path="/logged-out">
                     <HasLoggedOut />
