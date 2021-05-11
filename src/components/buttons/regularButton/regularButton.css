@@ -1,4 +1,4 @@
-.regularButton {
+.regularButton, .deleteButton {
     display: flex;
     justify-content: center;
     background-color: #ffceb5;
@@ -7,8 +7,15 @@
     font-size: large;
     color: #720072;
     text-transform: uppercase;
-    border: #ffbf9a solid 3px;
     border-radius: 10px;
     margin: 10px;
     width: 250px;
+}
+
+.regularButton {
+    border: #ffbf9a solid 3px;
+}
+
+.deleteButton {
+    border: crimson solid 3px;
 }
