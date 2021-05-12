@@ -64,7 +64,7 @@ function SignInPage() {
                                 />
                             </label>
                             {errors.password && <span className="errorMessage">{errors.password.message}</span>}
-                            <button type="submit" value="Submit" className="uploadButton">LOG IN</button>
+                            <button type="submit" value="Submit" className="regularButton">LOG IN</button>
                         </form>
                         <span>{errormessage}</span>
                     </div>

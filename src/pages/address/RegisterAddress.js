@@ -6,6 +6,8 @@ import PageHeader from "../../components/PageHeader";
 
 
 function RegisterAddress() {
+
+    const jwtToken = localStorage.getItem('token');
     const {handleSubmit, register, formState: {errors}} = useForm();
     const {user, user: {username}, updateUser } = useContext(AuthContext);
 
@@ -13,7 +15,12 @@ function RegisterAddress() {
         console.log(data);
         if (user.address) {
             try {
-                const result = await axios.put(`https://localhost:8443/users/${username}/address`, data);
+                const result = await axios.put(`https://localhost:8443/users/${username}/address`, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${jwtToken}`
+                    }
+                });
                 console.log(result);
                 updateUser();
             } catch (e) {
@@ -21,7 +28,12 @@ function RegisterAddress() {
             }
         } else {
             try {
-                const result = await axios.post(`https://localhost:8443/users/${username}/address`, data);
+                const result = await axios.post(`https://localhost:8443/users/${username}/address`, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${jwtToken}`
+                    }
+                });
                 console.log(result);
                 updateUser();
             } catch (e) {

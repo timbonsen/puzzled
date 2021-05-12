@@ -1,19 +1,31 @@
 import React, {useContext} from "react";
 import { useForm } from "react-hook-form";
 import PageHeader from "../../components/PageHeader";
-import LoginHeader from "../../components/LoginHeader";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext";
+import {useHistory} from "react-router-dom";
 
 function UploadPage() {
+
+    const jwtToken = localStorage.getItem('token');
     const { handleSubmit, formState: { errors }, register } = useForm();
     const { user: { username }} = useContext(AuthContext);
+    const history = useHistory();
 
     async function onSubmit(data) {
         console.log(data)
         try {
-            const result = await axios.post(`https://localhost:8443/${username}/upload`, data);
+            const result = await axios.post(`https://localhost:8443/users/${username}/upload`, data, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken}`
+                }
+            });
             console.log(result)
+            if (result.status === 201) {
+                history.push("/feedback/puzzle-upload");
+                setTimeout(() => history.push("/account"), 1500);
+            }
         } catch (e) {
             console.error(e);
         }
@@ -21,13 +33,13 @@ function UploadPage() {
 
     return (
         <>
-            <PageHeader title="UPLOAD" />
+            <PageHeader title="puzzel uploaden" />
             <div className="pageContainer">
                 <div className="pageContent">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="splitFormContainer">
-                            <div className="uploadFormLeft">
-                                <label htmlFor="puzzle-title">TITEL</label>
+                            <form className="uploadFormLeft">
+                                <label htmlFor="puzzle-title">titel</label>
                                 <input
                                     type="text"
                                     name="title"
@@ -46,7 +58,7 @@ function UploadPage() {
                                     )}/>
                                 {errors.title &&
                                 <h3>{errors.title.message}</h3>}
-                                <label htmlFor="puzzleBrand">MERK</label>
+                                <label htmlFor="puzzleBrand">merk</label>
                                 <select
                                     name="puzzleBrand"
                                     className="uploadInput"
@@ -61,7 +73,7 @@ function UploadPage() {
                                     <option value="castorland">Castorland</option>
                                     <option value="Clementoni">Clementoni</option>
                                 </select>
-                                <label htmlFor="numberOfPieces">AANTAL PUZZELSTUKJES</label>
+                                <label htmlFor="numberOfPieces">aantal puzzelstukjes</label>
                                 <select
                                     name="numberOfPieces"
                                     className="uploadInput"
@@ -78,21 +90,21 @@ function UploadPage() {
                                     <option value="2000+">2000</option>
                                     <option value="overig">Overig</option>
                                 </select>
-                                <label htmlFor="puzzleHeight">HOOGTE IN CENTIMETERS</label>
+                                <label htmlFor="puzzleHeight">hoogte in centimeters</label>
                                 <input
                                     type="number"
                                     name="puzzleHeight"
                                     className="uploadInput"
                                     id="puzzleHeight"
                                     {...register("puzzleHeight")}/>
-                                <label htmlFor="puzzleWidth">BREEDTE IN CENTIMETERS</label>
+                                <label htmlFor="puzzleWidth">breedte in centimeters</label>
                                 <input
                                     type="number"
                                     name="puzzleWidth"
                                     className="uploadInput"
                                     id="puzzleWidth"
                                     {...register("puzzleWidth")}/>
-                                <label htmlFor="eanCode">EAN CODE (BARCODE)</label>
+                                <label htmlFor="eanCode">ean code (barcode)</label>
                                 <input
                                     type="number"
                                     name="eanCode"
@@ -115,9 +127,9 @@ function UploadPage() {
                                     )}/>
                                 {errors.eanCode &&
                                 <h3>{errors.eanCode.message}</h3>}
-                            </div>
+                            </form>
                             <div className="uploadFormRight">
-                                <label htmlFor="puzzle-image">AFBEELDING</label>
+                                <label htmlFor="puzzle-image">afbeelding</label>
                                 <input
                                     type="file"
                                     multiple={false}
@@ -125,7 +137,7 @@ function UploadPage() {
                                     name="img"
                                     accept="image/*"
                                     {...register("image")}/>
-                                <label htmlFor="tag">CATEGORIE</label>
+                                <label htmlFor="tag">categorieën</label>
                                 <select
                                     name="tag1"
                                     className="uploadInput"
@@ -141,12 +153,12 @@ function UploadPage() {
                                     <option value="foto">Foto</option>
                                     <option value="3d">3D</option>
                                 </select>
-                                <label htmlFor="puzzle-activated">ACTIVEER</label>
+                                <label htmlFor="puzzle-activated">activeren voor ruilen</label>
                                 <input
                                     type="checkbox"
                                     name="activated"
                                     {...register("activated")}/>
-                                <button className="uploadButton" type="submit">
+                                <button className="regularButton" type="submit">
                                     Uploaden
                                 </button>
                             </div>

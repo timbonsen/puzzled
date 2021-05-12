@@ -95,6 +95,11 @@ function App() {
                         title="Uw account is succesvol verwijderd"
                         text="U word nu doorgestuurd naar de Homepage"/>
                 </Route>
+                <Route exact path="/feedback/puzzle-upload">
+                    <UserFeedback
+                        title="Uw puzzel is succesvol toegevoegd aan Uw account"
+                        text="U word nu doorgestuurd naar Uw account"/>
+                </Route>
             </Switch>
         </>
     );

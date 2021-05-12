@@ -2,10 +2,6 @@
 .splitFormContainer {
     display: flex;
     justify-content: space-evenly;
-    font-family: "Leelawadee UI";
-    font-size: large;
-    font-weight: bold;
-    color: #720072;
 }
 
 .uploadFormLeft, .uploadFormRight {
@@ -14,7 +10,7 @@
     margin: 20px;
 }
 
-.uploadInput, .uploadButton {
+.uploadInput {
     background-color: #fff5f0;
     font-family: "Leelawadee UI";
     font-weight: bold;

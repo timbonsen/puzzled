@@ -80,5 +80,13 @@ h4 {
   color: red;
 }
 
+label {
+  font-family: "Leelawadee UI";
+  text-transform: uppercase;
+  font-size: large;
+  font-weight: bold;
+  color: #720072;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 }
