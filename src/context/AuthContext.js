@@ -4,9 +4,10 @@ import jwt_Decode from "jwt-decode";
 import axios from "axios";
 import LoadingPage from "../pages/userFeedback/LoadingPage";
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
+    const token = localStorage.getItem('token');
     const history = useHistory();
     const [authState, setAuthState] = useState({
         user: null,
@@ -67,17 +68,15 @@ function AuthContextProvider({children}) {
         }
     }
 
-    /*useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (token !== undefined && authState.user === null) {
+    useEffect(() => {
+        if (token && !authState.user) {
             fetchUserData(token);
         } else {
             setAuthState({
                 status: 'done'
             })
         }
-    }, [authState])*/
+    }, []);
 
     function login(jwtToken) {
         localStorage.setItem('token', jwtToken);
@@ -93,7 +92,9 @@ function AuthContextProvider({children}) {
         const token = localStorage.getItem('token')
 
         history.push("/feedback/update");
-        fetchUserData(token).then(() => {history.push("/account")});
+        fetchUserData(token).then(() => {
+            history.push("/account")
+        });
     }
 
     function logout() {
@@ -106,7 +107,7 @@ function AuthContextProvider({children}) {
         history.push("/feedback/logout");
         setTimeout(() => {
             history.push("/");
-        },2000);
+        }, 2000);
     }
 
     const data = {
@@ -120,7 +121,7 @@ function AuthContextProvider({children}) {
         <AuthContext.Provider value={data}>
             {authState.status === 'done'
                 ? children
-                : <LoadingPage />
+                : <LoadingPage/>
             }
         </AuthContext.Provider>
     )
