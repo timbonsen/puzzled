@@ -13,26 +13,29 @@ function AccountPage() {
 
     const jwtToken = localStorage.getItem('token');
 
-    const {user, user: {username}, logout} = useContext(AuthContext);
+    const {user, logout} = useContext(AuthContext);
     console.log(user)
 
     async function loadPuzzles() {
         try {
-            const result = await axios.get(`https://localhost:8443/users/${username}/puzzles`, {
+            const result = await axios.get(`https://localhost:8443/users/${user.username}/puzzles`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`
                 }
             });
             console.log(result);
+            /*for (let i = 0; i < result.data.length; i++) {
+            return(<PuzzleCard id={result.data[i].id}/>)
+            }*/
         } catch (e) {
             console.error(e);
         }
     }
 
-    useEffect(loadPuzzles, [])
+    useEffect(loadPuzzles, [user]);
 
-    if (user === null) {
+    if (!user) {
         return (
             <>
                 <PageHeader title="account details"/>

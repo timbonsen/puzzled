@@ -36,13 +36,13 @@ function App() {
                 </Route>
                 <Route path="/upload">
                     <PrivateRoute
-                        page={<UploadPage/>}
+                        page={<UploadPage />}
                         />
                 </Route>
                 <Route path="/account">
                     <AccountPage/>
                 </Route>
-                <Route path="/puzzle">
+                <Route path="/puzzle/:id">
                     <PuzzlePage/>
                 </Route>
                 <Route exact path="/exchange/proposal">
