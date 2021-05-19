@@ -19,3 +19,9 @@
 .deleteButton {
     border: crimson solid 3px;
 }
+
+.regularButton:disabled {
+    background-color: lightgray;
+    color: dimgray;
+    border-color: dimgray;
+}
