@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useContext} from "react";
@@ -9,11 +9,11 @@ import { AuthContext } from "../../context/AuthContext";
 function SignInPage() {
     const { login } = useContext(AuthContext);
     const {handleSubmit, register, formState: {errors}} = useForm();
-    let errormessage = "lege error";
+    const [errormessage, setErrorMessage] = useState(null);
 
-    /*const onSubmit = data => console.log(data)*/
     async function onSubmit(data) {
         console.log(data);
+        setErrorMessage(null)
         try {
             const result = await axios.post('https://localhost:8443/authenticate', data);
             console.log(result.data.jwt);
@@ -21,6 +21,7 @@ function SignInPage() {
 
         } catch (e) {
             console.error(e);
+            setErrorMessage("Verkeerde gebruikersnaam of wachtwoord, probeer opnieuw")
         }
     }
 
@@ -66,7 +67,7 @@ function SignInPage() {
                             {errors.password && <span className="errorMessage">{errors.password.message}</span>}
                             <button type="submit" value="Submit" className="regularButton">LOG IN</button>
                         </form>
-                        <span>{errormessage}</span>
+                        {errormessage && <span className="errorMessage">{errormessage}</span> }
                     </div>
                     <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te
                         melden.</p>

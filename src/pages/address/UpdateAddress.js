@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import PageHeader from "../../components/PageHeader";
-import {useContext} from "react";
+import React, {useContext} from "react";
 
 function UpdateAddress() {
     const {handleSubmit, register, formState: {errors}} = useForm();
@@ -36,83 +36,108 @@ function UpdateAddress() {
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
                             <label htmlFor="streetName-field">
                                 Straatnaam:
-                                <input
-                                    type="text"
-                                    id="streetName-field"
-                                    name="streetName"
-                                    {...register("streetName", {
+                            </label>
+                            <input
+                                type="text"
+                                className="inputField"
+                                id="streetName-field"
+                                name="streetName"
+                                {...register("streetName", {
+                                    required: {
+                                        value: true,
+                                        message: "Voer een straatnaam in"
+                                    },
+                                    pattern: {
+                                        value: /[a-zA-Z]/,
+                                        message: "De straatnaam mag alleen letters bevatten, geen cijfers of leestekens"
+                                    }
+                                })}
+                            />
+                            {errors.streetName && <span className="errorMessage">{errors.streetName.message}</span>}
+                            <label htmlFor="houseNumber-field">
+                                Huisnummer en toevoegingen:
+                            </label>
+                            <input
+                                type="text"
+                                className="inputField"
+                                id="houseNumber-field"
+                                name="houseNumber"
+                                {...register("houseNumber", {
                                         required: {
                                             value: true,
-                                            message: "Voer een straatnaam in"
+                                            message: "Voer een huisnummer in"
                                         }
-                                    })}
-                                />
-                                {errors.streetName && <span>{errors.streetName.message}</span>}
-                            </label>
-                            <label htmlFor="houseNumber-field">
-                                Huisnummer:
-                                <input
-                                    type="text"
-                                    id="houseNumber-field"
-                                    name="houseNumber"
-                                    {...register("houseNumber", {
-                                            required: {
-                                                value: true,
-                                                message: "Voer een huisnummer in"
-                                            }
-                                        }
-                                    )}
-                                />
-                                {errors.houseNumber && <span>{errors.houseNumber.message}</span>}
-                            </label>
+                                    }
+                                )}
+                            />
+                            {errors.houseNumber && <span className="errorMessage">{errors.houseNumber.message}</span>}
                             <label htmlFor="postalCode-field">
                                 Postcode:
-                                <input
-                                    type="text"
-                                    id="postalCode-field"
-                                    name="postalCode"
-                                    {...register("postalCode", {
-                                            required: {
-                                                value: true,
-                                                message: "Voer een postcode in"
-                                            }
-                                        }
-                                    )}
-                                />
-                                {errors.postalCode && <span>{errors.postalCode.message}</span>}
                             </label>
+                            <input
+                                type="text"
+                                className="inputField"
+                                id="postalCode-field"
+                                name="postalCode"
+                                {...register("postalCode", {
+                                        required: {
+                                            value: true,
+                                            message: "Voer een postcode in"
+                                        },
+                                        maxLength: {
+                                            value: 6,
+                                            message: "De postcode moet uit 4 cijfers en 2 letters bestaan zonder spatie"
+                                        },
+                                        minLength: {
+                                            value: 6,
+                                            message: "De postcode moet uit 4 cijfers en 2 letters bestaan zonder spatie"
+                                        }
+                                    }
+                                )}
+                            />
+                            {errors.postalCode && <span className="errorMessage">{errors.postalCode.message}</span>}
                             <label htmlFor="city-field">
                                 Woonplaats:
-                                <input
-                                    type="text"
-                                    id="city-field"
-                                    name="city"
-                                    {...register("city", {
-                                            required: {
-                                                value: true,
-                                                message: "Voer een stad in"
-                                            }
-                                        }
-                                    )}
-                                />
-                                {errors.city && <span>{errors.city.message}</span>}
                             </label>
+                            <input
+                                type="text"
+                                className="inputField"
+                                id="city-field"
+                                name="city"
+                                {...register("city", {
+                                        required: {
+                                            value: true,
+                                            message: "Voer een stad in"
+                                        },
+                                        pattern: {
+                                            value: /[a-zA-Z]/,
+                                            message: "De stadsnaam mag alleen letters bevatten, geen cijfers of leestekens"
+                                        }
+                                    }
+                                )}
+                            />
+                            {errors.city && <span className="errorMessage">{errors.city.message}</span>}
                             <label htmlFor="country-field">
                                 Land:
-                                <input
-                                    type="text"
-                                    id="country-field"
-                                    name="country"
-                                    {...register("country", {
-                                            required: {
-                                                value: true,
-                                                message: "Voer een land in"
-                                            }
-                                        }
-                                    )}
-                                />
-                                {errors.country && <span>{errors.country.message}</span>}
                             </label>
+                            <input
+                                type="text"
+                                className="inputField"
+                                id="country-field"
+                                name="country"
+                                {...register("country", {
+                                        required: {
+                                            value: true,
+                                            message: "Voer een land in"
+                                        },
+                                        pattern: {
+                                            value: /[a-zA-Z]/,
+                                            message: "Het land mag alleen letters bevatten, geen cijfers of leestekens"
+                                        }
+                                    }
+                                )}
+                            />
+                            {errors.country && <span className="errorMessage">{errors.country.message}</span>}
                             <button type="submit" className="regularButton">aanpassen</button>
                         </form>
                     </div>
