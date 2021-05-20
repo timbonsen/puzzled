@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {Link, useHistory} from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 
 function SignUpPage() {
-    const { handleSubmit,  register, formState: { errors } } = useForm();
+    const {handleSubmit, register, formState: {errors}} = useForm();
     const history = useHistory();
 
     async function onSubmit(data) {
@@ -34,6 +34,7 @@ function SignUpPage() {
                                 Gebruikersnaam:
                                 <input
                                     type="text"
+                                    className="inputField"
                                     id="username-field"
                                     name="username"
                                     {...register("username", {
@@ -49,12 +50,17 @@ function SignUpPage() {
                                 Wachtwoord:
                                 <input
                                     type="password"
+                                    className="inputField"
                                     id="password-field"
                                     name="password"
                                     {...register("password", {
                                             required: {
                                                 value: true,
                                                 message: "Voer een wachtwoord in"
+                                            },
+                                            pattern: {
+                                                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                                                message: "Het wachtwoord moet uit minimaal 8 tekens bestaan en minimaal 1 letter, 1 cijfer en 1 teken bevatten!"
                                             }
                                         }
                                     )}
@@ -65,6 +71,7 @@ function SignUpPage() {
                                 Email:
                                 <input
                                     type="email"
+                                    className="inputField"
                                     id="email-field"
                                     name="email"
                                     {...register("email", {
@@ -81,6 +88,7 @@ function SignUpPage() {
                                 Voornaam:
                                 <input
                                     type="text"
+                                    className="inputField"
                                     id="firstname-field"
                                     name="firstname"
                                     {...register("firstname")}
@@ -90,6 +98,7 @@ function SignUpPage() {
                                 Achternaam:
                                 <input
                                     type="text"
+                                    className="inputField"
                                     id="lastname-field"
                                     name="lastname"
                                     {...register("lastname")}
@@ -98,7 +107,8 @@ function SignUpPage() {
                             <button type="submit" className="uploadButton">REGISTREER</button>
                         </form>
                     </div>
-                    <p>Heeft U al een account? Klik dan <Link to="/signin" className="link">HIER</Link> om in te loggen.</p>
+                    <p>Heeft U al een account? Klik dan <Link to="/signin" className="link">HIER</Link> om in te loggen.
+                    </p>
                 </div>
             </div>
         </>
