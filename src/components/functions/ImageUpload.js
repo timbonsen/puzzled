@@ -56,7 +56,7 @@ function ImageUpload() {
 
             {image.previewImage && (
                 <div>
-                    <img className="puzzleImage" src={image.previewImage} alt=""/>
+                    <img className="previewImage" src={image.previewImage} alt=""/>
                 </div>
             )}
 

@@ -20,7 +20,7 @@ function ImageUploadContextProvider({children}) {
     }
 
     const data = {
-    ...imageId,
+    imageId: imageId,
         registerId: registerImageId,
         deleteId: deleteImageId,
 
