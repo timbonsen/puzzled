@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {useForm} from "react-hook-form";
 import PageHeader from "../../components/PageHeader";
 import {AuthContext} from "../../context/AuthContext";
@@ -11,10 +11,11 @@ function UploadPage() {
 
     const {handleSubmit, formState: {errors}, register} = useForm();
     const {user: {username}} = useContext(AuthContext);
-    const {imageId} = useContext(ImageUploadContext);
+    const { imageId, deleteId } = useContext(ImageUploadContext);
     const history = useHistory();
 
     async function onSubmit(data) {
+        console.log(imageId)
         console.log(data.imageId);
         data.imageId = imageId;
         console.log(data);
@@ -25,11 +26,21 @@ function UploadPage() {
             console.log(result)
             if (result.status === 201) {
                 history.push("/feedback/puzzle-upload");
+                deleteId();
                 setTimeout(() => history.push("/account"), 1500);
             }
         } catch (e) {
             console.error(e);
         }
+    }
+
+    useEffect(() => {
+        deleteId()
+    }, []);
+
+    useEffect(disableSubmitButton, [imageId])
+    function disableSubmitButton() {
+        return !imageId;
     }
 
     return (
@@ -58,51 +69,89 @@ function UploadPage() {
                                 )}/>
                             {errors.title && <span className="errorMessage">{errors.title.message}</span>}
                             <label htmlFor="puzzleBrand">merk</label>
-                            <select
+                            <input
+                                type="text"
+                                list="brands"
                                 name="puzzleBrand"
                                 className="inputField"
                                 id="puzzleBrand"
                                 {...register("puzzleBrand")}
-                            >
-                                <option value="king">King</option>
-                                <option value="ravensburger">Ravensburger</option>
-                                <option value="jumbo">Jumbo</option>
-                                <option value="falcon">Falcon</option>
-                                <option value="goliath">Goliath</option>
-                                <option value="castorland">Castorland</option>
-                                <option value="Clementoni">Clementoni</option>
-                            </select>
+                            />
+                            <datalist id="brands">
+                                <option>King</option>
+                                <option>Ravensburger</option>
+                                <option>Jumbo</option>
+                                <option>Falcon</option>
+                                <option>Goliath</option>
+                                <option>Castorland</option>
+                                <option>Clementoni</option>
+                            </datalist>
                             <label htmlFor="numberOfPieces">aantal puzzelstukjes</label>
-                            <select
+                            <input
+                                type="number"
+                                list="puzzlePieces"
                                 name="numberOfPieces"
                                 className="inputField"
                                 id="numberOfPieces"
-                                {...register("numberOfPieces")}
-                            >
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="250">250</option>
-                                <option value="500">500</option>
-                                <option value="1000">1000</option>
-                                <option value="1500">1500</option>
-                                <option value="2000+">2000</option>
-                                <option value="overig">Overig</option>
-                            </select>
+                                {...register("numberOfPieces", {
+                                        required: {
+                                            value: true,
+                                            message: 'Het aantal puzzelstukjes moet worden opgegeven.'
+                                        },
+                                        min: {
+                                            value: 1,
+                                            message: 'De afmeting kan geen negatieve waarde zijn'
+                                        },
+                                        maxLength: {
+                                            value: 6,
+                                            message: 'Het getal mag uit maximaal 6 cijfers bestaan.'
+                                        }
+                                    }
+                                )}/>
+                            <datalist id="puzzlePieces">
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                                <option>250</option>
+                                <option>500</option>
+                                <option>1000</option>
+                                <option>1500</option>
+                                <option>2000</option>
+                            </datalist>
                             <label htmlFor="puzzleHeight">hoogte in centimeters</label>
                             <input
                                 type="number"
                                 name="puzzleHeight"
                                 className="inputField"
                                 id="puzzleHeight"
-                                {...register("puzzleHeight")}/>
+                                {...register("puzzleHeight", {
+                                        min: {
+                                            value: 1,
+                                            message: 'De afmeting kan geen negatieve waarde zijn'
+                                        },
+                                        maxLength: {
+                                            value: 5,
+                                            message: 'Het getal mag uit maximaal 5 cijfers bestaan'
+                                        }
+                                    }
+                                )}/>
                             <label htmlFor="puzzleWidth">breedte in centimeters</label>
                             <input
                                 type="number"
                                 name="puzzleWidth"
                                 className="inputField"
                                 id="puzzleWidth"
-                                {...register("puzzleWidth")}/>
+                                {...register("puzzleWidth", {
+                                        min: {
+                                            value: 1,
+                                            message: 'De afmeting kan geen negatieve waarde zijn'
+                                        },
+                                        maxLength: {
+                                            value: 5,
+                                            message: 'Het getal mag uit maximaal 5 cijfers bestaan'
+                                        }
+                                    }
+                                )}/>
                             <label htmlFor="eanCode">ean code (barcode)</label>
                             <input
                                 type="number"
@@ -131,21 +180,24 @@ function UploadPage() {
                             {errors.eanCode &&
                             <span className="errorMessage">{errors.eanCode.message}</span>}
                             <label htmlFor="tag">categorieën</label>
-                            <select
+                            <input
+                                type="text"
+                                list="tags"
                                 name="tag1"
                                 className="inputField"
                                 id="tag1"
                                 {...register("tag1")}
-                            >
-                                <option value="nature">Natuur</option>
-                                <option value="jvhaasteren">Jan Van Haasteren</option>
-                                <option value="wasgij">Wasgij</option>
-                                <option value="disney">Disney</option>
-                                <option value="dieren">Dieren</option>
-                                <option value="stilleven">Stilleven</option>
-                                <option value="foto">Foto</option>
-                                <option value="3d">3D</option>
-                            </select>
+                            />
+                            <datalist id="tags">
+                                <option>Jan Van Haasteren</option>
+                                <option>Wasgij</option>
+                                <option>Disney</option>
+                                <option>Marvel</option>
+                                <option>Schilderij</option>
+                                <option>Natuur</option>
+                                <option>Dieren</option>
+                                <option>Architectuur</option>
+                            </datalist>
                             <label htmlFor="puzzle-activated">activeren voor ruilen</label>
                             <input
                                 type="checkbox"
@@ -157,7 +209,7 @@ function UploadPage() {
                             <input type="hidden"
                                    name="imageId"
                             />
-                            <button className="regularButton" type="submit">
+                            <button className="regularButton" type="submit" disabled={disableSubmitButton()}>
                                 Uploaden
                             </button>
                         </form>
