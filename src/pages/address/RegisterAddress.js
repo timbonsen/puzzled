@@ -117,13 +117,13 @@ function RegisterAddress() {
                                             value: true,
                                             message: "Voer een postcode in"
                                         },
-                                        maxLength: {
-                                            value: 6,
-                                            message: "De postcode moet uit 4 cijfers en 2 letters bestaan zonder spatie"
+                                        pattern: {
+                                            value: /[1-9][0-9]{3}([A-RT-Z][A-Z]|[S][BCE-RT-Z])/,
+                                            message: "Voer een geldige postcode in: 2222AA"
                                         },
-                                        minLength: {
-                                            value: 6,
-                                            message: "De postcode moet uit 4 cijfers en 2 letters bestaan zonder spatie"
+                                        maxLength: {
+                                            value: 8,
+                                            message: "Een postcode bestaat uit 4 cijfers en 2 letters"
                                         }
                                     }
                                 )}
@@ -164,7 +164,7 @@ function RegisterAddress() {
                                             message: "Voer een land in"
                                         },
                                         pattern: {
-                                            value: /[a-zA-Z]/,
+                                            value: /[a-zA-Z][^0-9]/,
                                             message: "Het land mag alleen letters bevatten, geen cijfers of leestekens"
                                         }
                                     }
