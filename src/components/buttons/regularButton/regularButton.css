@@ -20,6 +20,10 @@
     border: crimson solid 3px;
 }
 
+.regularButton:hover, .deleteButton:hover {
+    cursor: pointer;
+}
+
 .regularButton:disabled {
     background-color: lightgray;
     color: dimgray;
