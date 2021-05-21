@@ -15,8 +15,8 @@ function UploadPage() {
     const history = useHistory();
 
     async function onSubmit(data) {
-        console.log(imageId)
-        console.log(data.imageId);
+/*        console.log(imageId)
+        console.log(data.imageId);*/
         data.imageId = imageId;
         console.log(data);
         const json = JSON.stringify(data);
@@ -34,9 +34,9 @@ function UploadPage() {
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         deleteId()
-    }, []);
+    }, []);*/
 
     useEffect(disableSubmitButton, [imageId])
     function disableSubmitButton() {

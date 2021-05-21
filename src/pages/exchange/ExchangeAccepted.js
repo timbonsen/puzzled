@@ -1,5 +1,5 @@
 import PageHeader from "../../components/PageHeader";
-import PuzzleCard from "../../components/puzzleCard/PuzzleCard";
+import PuzzleCard from "../../components/puzzleDisplay/PuzzleCard";
 import image1 from "../../assets/images/CastorSwitzerland.jpg";
 import image3 from "../../assets/images/JumboCats.jpg";
 import LinkButton from "../../components/buttons/linkButton/linkButton";

@@ -70,10 +70,11 @@ h3 {
 h4 {
   display: flex;
   justify-content: center;
-  color: #720072;
+  color: #e06f2d;
   margin: 10px;
   font-family: "Leelawadee UI";
   font-size: large;
+  text-transform: capitalize;
 }
 
 .errorMessage {

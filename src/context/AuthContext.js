@@ -1,7 +1,7 @@
 import React, {createContext, useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import jwt_Decode from "jwt-decode";
-import axios from "axios";
+import https from "../http-common";
 import LoadingPage from "../pages/userFeedback/LoadingPage";
 
 export const AuthContext = createContext({});
@@ -24,12 +24,7 @@ function AuthContextProvider({children}) {
         })
 
         try {
-            const result = await axios.get(`https://localhost:8443/users/${username}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${jwtToken}`
-                }
-            })
+            const result = await https.get(`/users/${username}`)
             console.log(result);
             if (result.data.address != null) {
                 setAuthState({

@@ -5,7 +5,7 @@ import image2 from '../../assets/images/JumboCottage.jpg'
 import image3 from '../../assets/images/JumboCats.jpg'
 import image4 from '../../assets/images/WasgijTerras.jpg'
 import RegularButton from "../../components/buttons/regularButton/RegularButton";
-import PuzzleCard from "../../components/puzzleCard/PuzzleCard";
+import PuzzleCard from "../../components/puzzleDisplay/PuzzleCard";
 import {Link} from "react-router-dom";
 
 function ExchangeProposal() {

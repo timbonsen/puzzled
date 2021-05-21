@@ -12,7 +12,7 @@ function ImageUploadContextProvider({children}) {
     }
 
     useEffect(() => {
-        console.log(imageId)
+        /*console.log(imageId)*/
     },[imageId]);
 
     function deleteImageId() {

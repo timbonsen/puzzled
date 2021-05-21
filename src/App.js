@@ -43,7 +43,7 @@ function App() {
                     <AccountPage/>
                 </Route>
                 <Route path="/puzzle/:id">
-                    <PuzzlePage/>
+                    <PuzzlePage />
                 </Route>
                 <Route exact path="/exchange/proposal">
                     <PrivateRoute

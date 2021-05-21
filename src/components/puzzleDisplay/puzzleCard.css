@@ -1,3 +1,7 @@
+.puzzleImage:hover {
+    cursor: pointer;
+}
+
 .puzzleImage, .previewImage {
     width: 200px;
     border: #720072 solid 3px;
