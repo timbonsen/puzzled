@@ -2,7 +2,6 @@ import https from "../../http-common";
 import {AuthContext} from "../../context/AuthContext";
 import {useContext, useEffect, useState} from "react";
 import GetImage from "./GetImage";
-import {logDOM} from "@testing-library/react";
 
 function DisplayPuzzles() {
     const {user} = useContext(AuthContext);
@@ -16,11 +15,7 @@ function DisplayPuzzles() {
     async function getPuzzles() {
 
         try {
-            const result = await https.get(`/users/${user.username}/puzzles`, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            });
+            const result = await https.get(`/users/${user.username}/puzzles`);
             console.log(result);
             setPuzzles(result.data);
         } catch (e) {

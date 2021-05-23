@@ -4,6 +4,7 @@ import PuzzleCard from "../puzzleDisplay/PuzzleCard";
 import LargePuzzleCard from "../puzzleDisplay/LargePuzzleCard";
 
 function GetImage({ puzzle, format }) {
+    console.log(puzzle.im)
     const [image, setImage] = useState({
         data: {
             data: null
@@ -15,7 +16,7 @@ function GetImage({ puzzle, format }) {
 
     async function fetchImage() {
         try {
-            const result = await https.get(`/users/puzzles/image/${puzzle.imageId}`,{
+            const result = await https.get(`/users/puzzles/image/${puzzle.image.id}`,{
                 responseType: "blob"
             });
             console.log(result);
