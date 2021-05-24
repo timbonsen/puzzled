@@ -1,68 +1,82 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
-import {Link} from "react-router-dom";
 import './search.css'
+import DataListBrands from "../../components/datalists/DataListBrands";
+import DataListNumberOfPieces from "../../components/datalists/DataListNumberOfPieces";
+import DataListTags from "../../components/datalists/DataListTags";
+import DisplayPuzzles from "../../components/functions/DisplayPuzzles";
+import {useForm} from "react-hook-form";
 
 function SearchPage() {
-    function search() {
 
+    const { handleSubmit, register } = useForm();
+    const [searchFilter, setSearchFilter] = useState("none");
+    const [searchValue, setSearchValue] = useState("all");
+    const [searchTicker, setSearchTicker] = useState(0);
+    const [searchResult, setSearchResult] = useState(null);
+
+    function onSubmit(data) {
+        console.log(data);
+        data.searchValue = data.searchValue.toLowerCase()
+        setSearchValue(data.searchValue);
+        setSearchTicker(searchTicker + 1);
+        console.log(searchTicker);
+        document.getElementById("search-value").value = "";
     }
+
+    function searchFilterLists() {
+        setSearchFilter(document.getElementById("search-filter").value);
+    }
+
+    useEffect(() => {
+        setSearchResult(null);
+        setTimeout(() => {
+            console.log("Heeft gezocht");
+            console.log(searchResult);
+            setSearchResult(
+                <DisplayPuzzles search={searchFilter} value={searchValue}/>
+            );
+        });
+    }, [searchTicker]);
 
     return (
         <>
-            <PageHeader title="SEARCH" />
+            <PageHeader title="zoek puzzels"/>
             <div className="pageContainer">
                 <div className="pageContent">
-                    <LoginHeader />
+                    <LoginHeader/>
                     <div className="searchContainer">
-                        <div className="searchFilters">
-                            <h3>Zoekopdracht</h3>
+                        <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
+                            <label>Zoekfilter</label>
+                            <select
+                                className="inputField"
+                                id="search-filter"
+                                name="searchFilter"
+                                onClick={searchFilterLists}
+                                {...register("searchFilter")}>
+                                <option value="all">Alle puzzels</option>
+                                <option value="tags">Categorie</option>
+                                <option value="pieces">Aantal Puzzelstukjes</option>
+                                <option value="brands">Merk</option>
+                            </select>
                             <input
                                 type="text"
-                                id="search-field"
-                                name="search"
-                                placeholder="Zoek"
-                                onKeyPress={search}
+                                list={searchFilter}
+                                className="inputField"
+                                id="search-value"
+                                name="searchValue"
+                                {...register("searchValue")}
                             />
-                            <div className="searchFilterOptions">
-                                <h4>MERK</h4>
-                                <Link className="searchFilter">KING</Link>
-                                <Link className="searchFilter">RAVENSBURGER</Link>
-                                <Link className="searchFilter">JUMBO</Link>
-                                <Link className="searchFilter">FALCON</Link>
-                                <Link className="searchFilter">GOLIATH</Link>
-                                <Link className="searchFilter">CASTORLAND</Link>
-                                <Link className="searchFilter">CLEMENTONI</Link>
-                            </div>
-                            <div className="searchFilterOptions">
-                                <h4>AANTAL PUZZELSTUKJES</h4>
-                                <Link className="searchFilter">25</Link>
-                                <Link className="searchFilter">50</Link>
-                                <Link className="searchFilter">100</Link>
-                                <Link className="searchFilter">250</Link>
-                                <Link className="searchFilter">500</Link>
-                                <Link className="searchFilter">1000</Link>
-                                <Link className="searchFilter">1500</Link>
-                                <Link className="searchFilter">2000</Link>
-                                <Link className="searchFilter">OVERIG</Link>
-                            </div>
-                            <div className="searchFilterOptions">
-                                <h4>CATEGORIE</h4>
-                                <Link className="searchFilter">NATUUR</Link>
-                                <Link className="searchFilter">JAN VAN HAASTEREN</Link>
-                                <Link className="searchFilter">WASGIJ</Link>
-                                <Link className="searchFilter">DISNEY</Link>
-                                <Link className="searchFilter">DIEREN</Link>
-                                <Link className="searchFilter">STILLEVEN</Link>
-                                <Link className="searchFilter">FOTO</Link>
-                                <Link className="searchFilter">3D</Link>
-                            </div>
-                        </div>
-                        <div className="searchResults">
-                            <h3>zoekresultaten</h3>
-                            <p>Voor een zoekopdracht uit</p>
-                        </div>
+                            <DataListBrands/>
+                            <DataListNumberOfPieces/>
+                            <DataListTags/>
+                            <button type="submit" className="regularButton">zoek</button>
+                        </form>
+                    </div>
+                    <div className="searchResults">
+                        <h3>zoekresultaten</h3>
+                        {searchResult}
                     </div>
                 </div>
             </div>
