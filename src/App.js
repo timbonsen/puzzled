@@ -14,8 +14,10 @@ import ExchangeProposal from "./pages/exchange/ExchangeProposal";
 import ExchangeAccepted from "./pages/exchange/ExchangeAccepted";
 import RegisterAddress from "./pages/address/RegisterAddress";
 import UserFeedback from "./pages/userFeedback/UserFeedback";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/privateRoutes/PrivateRoute";
 import WantToDelete from "./pages/userFeedback/WantToDelete";
+import PrivateAdminRoute from "./components/privateRoutes/PrivateAdminRoute";
+import AdminPage from "./pages/admin/AdminPage";
 
 function App() {
     return (
@@ -37,6 +39,11 @@ function App() {
                 <Route path="/upload">
                     <PrivateRoute
                         page={<UploadPage />}
+                        />
+                </Route>
+                <Route path="/admin">
+                    <PrivateAdminRoute
+                        page={<AdminPage />}
                         />
                 </Route>
                 <Route path="/account">
