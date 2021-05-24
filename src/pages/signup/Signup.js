@@ -10,6 +10,10 @@ function SignUpPage() {
 
     async function onSubmit(data) {
         console.log(data);
+        data.username = data.username.toLowerCase();
+        data.email = data.email.toLowerCase();
+        data.firstname =  data.firstname.toLowerCase();
+        data.lastname = data.lastname.toLowerCase();
         try {
             const result = await axios.post('https://localhost:8443/register', data);
             console.log(result)

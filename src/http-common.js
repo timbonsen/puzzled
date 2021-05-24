@@ -7,6 +7,6 @@ export default axios.create({
     baseURL: `https://localhost:8443`,
     headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${jwtToken}`,
     }
 })

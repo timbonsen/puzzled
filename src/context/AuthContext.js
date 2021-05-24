@@ -24,7 +24,7 @@ function AuthContextProvider({children}) {
         })
 
         try {
-            const result = await https.get(`/users/${username}`)
+            const result = await https.get(`/users/${username}`);
             console.log(result);
             if (result.data.address != null) {
                 setAuthState({
