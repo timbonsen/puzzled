@@ -4,7 +4,6 @@ import PuzzleCard from "../puzzleDisplay/PuzzleCard";
 import LargePuzzleCard from "../puzzleDisplay/LargePuzzleCard";
 
 function GetImage({ puzzle, format }) {
-    console.log(puzzle.im)
     const [image, setImage] = useState({
         data: {
             data: null

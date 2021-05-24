@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {useContext, useEffect, useState} from "react";
 import GetImage from "./GetImage";
 
-function DisplayPuzzles() {
+function DisplayPuzzles({search, value}) {
     const {user} = useContext(AuthContext);
     const [puzzles, setPuzzles] = useState([]);
     const [puzzleList, setPuzzleList] = useState(
@@ -13,22 +13,48 @@ function DisplayPuzzles() {
     );
 
     async function getPuzzles() {
-
-        try {
-            const result = await https.get(`/users/${user.username}/puzzles`);
-            console.log(result);
-            setPuzzles(result.data);
-        } catch (e) {
-            console.error(e);
+        console.log(search)
+        if (search === "none") {
+            console.log("None")
+        } else if (search === "user") {
+            try {
+                const result = await https.get(`/users/${user.username}/puzzles`);
+                console.log(result);
+                setPuzzles(result.data);
+            } catch (e) {
+                console.error(e);
+            }
+        } else if (search === "all") {
+            console.log("Alle puzzels")
+            try {
+                const result = await https.get(`/puzzles/all`);
+                console.log(result);
+                setPuzzles(result.data);
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            if (value === "") {
+                console.log("searchNone");
+            } else {
+                console.log("Gezocht met filters");
+                try {
+                    const result = await https.get(`/puzzles/${search}/${value}`);
+                    console.log(result);
+                    setPuzzles(result.data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
         }
     }
 
-    useEffect(getPuzzles, [])
-    console.log(puzzles)
+    useEffect(getPuzzles, [value]);
+    console.log(puzzles);
 
     function ifThereArePuzzles() {
-        if (!puzzles) {
-            return <span className="errorMessage">Je hebt nog geen puzzels</span>
+        if (!puzzles || puzzles.length < 1) {
+            return <span className="errorMessage">Geen resultaten</span>
         } else {
             return puzzles.map((puzzle) => (
                     <GetImage puzzle={puzzle} format="small"/>
@@ -46,7 +72,7 @@ function DisplayPuzzles() {
             </>
         )
     }, [puzzles])
-    /*console.log(puzzleList);*/
+    console.log(puzzleList);
     return puzzleList;
 }
 
