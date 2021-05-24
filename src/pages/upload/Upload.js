@@ -6,6 +6,9 @@ import {useHistory} from "react-router-dom";
 import ImageUpload from "../../components/functions/ImageUpload";
 import https from "../../http-common";
 import {ImageUploadContext} from "../../context/ImageUploadContext";
+import DataListBrands from "../../components/datalists/DataListBrands";
+import DataListNumberOfPieces from "../../components/datalists/DataListNumberOfPieces";
+import DataListTags from "../../components/datalists/DataListTags";
 
 function UploadPage() {
 
@@ -15,8 +18,9 @@ function UploadPage() {
     const history = useHistory();
 
     async function onSubmit(data) {
-/*        console.log(imageId)
-        console.log(data.imageId);*/
+        data.title = data.title.toLowerCase();
+        data.puzzleBrand = data.puzzleBrand.toLowerCase();
+        data.tag1 = data.tag1.toLowerCase();
         data.imageId = imageId;
         console.log(data);
         const json = JSON.stringify(data);
@@ -33,10 +37,6 @@ function UploadPage() {
             console.error(e);
         }
     }
-
-    /*useEffect(() => {
-        deleteId()
-    }, []);*/
 
     useEffect(disableSubmitButton, [imageId])
     function disableSubmitButton() {
@@ -77,19 +77,11 @@ function UploadPage() {
                                 id="puzzleBrand"
                                 {...register("puzzleBrand")}
                             />
-                            <datalist id="brands">
-                                <option>King</option>
-                                <option>Ravensburger</option>
-                                <option>Jumbo</option>
-                                <option>Falcon</option>
-                                <option>Goliath</option>
-                                <option>Castorland</option>
-                                <option>Clementoni</option>
-                            </datalist>
+                            <DataListBrands />
                             <label htmlFor="numberOfPieces">aantal puzzelstukjes</label>
                             <input
                                 type="number"
-                                list="puzzlePieces"
+                                list="pieces"
                                 name="numberOfPieces"
                                 className="inputField"
                                 id="numberOfPieces"
@@ -100,7 +92,7 @@ function UploadPage() {
                                         },
                                         min: {
                                             value: 1,
-                                            message: 'De afmeting kan geen negatieve waarde zijn'
+                                            message: 'En puzzel kan niet minder dan 1 stukjes bevatten.'
                                         },
                                         maxLength: {
                                             value: 6,
@@ -108,16 +100,7 @@ function UploadPage() {
                                         }
                                     }
                                 )}/>
-                            <datalist id="puzzlePieces">
-                                <option>25</option>
-                                <option>50</option>
-                                <option>100</option>
-                                <option>250</option>
-                                <option>500</option>
-                                <option>1000</option>
-                                <option>1500</option>
-                                <option>2000</option>
-                            </datalist>
+                            <DataListNumberOfPieces />
                             <label htmlFor="puzzleHeight">hoogte in centimeters</label>
                             <input
                                 type="number"
@@ -188,23 +171,14 @@ function UploadPage() {
                                 id="tag1"
                                 {...register("tag1")}
                             />
-                            <datalist id="tags">
-                                <option>Jan Van Haasteren</option>
-                                <option>Wasgij</option>
-                                <option>Disney</option>
-                                <option>Marvel</option>
-                                <option>Schilderij</option>
-                                <option>Natuur</option>
-                                <option>Dieren</option>
-                                <option>Architectuur</option>
-                            </datalist>
+                            <DataListTags />
                             <label htmlFor="puzzle-activated">activeren voor ruilen</label>
                             <input
                                 type="checkbox"
                                 name="activated"
                                 {...register("activated")}/>
                             <label htmlFor="puzzle-image">afbeelding
-                                <ImageUpload/>
+                                <ImageUpload />
                             </label>
                             <input type="hidden"
                                    name="imageId"

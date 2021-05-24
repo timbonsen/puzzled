@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import PageHeader from "../../components/PageHeader";
 import LoginHeader from "../../components/LoginHeader";
 import {AuthContext} from "../../context/AuthContext";
@@ -37,7 +37,7 @@ function AccountPage() {
                         <IsAddressPresent/>
                         <h3>Mijn puzzels</h3>
 
-                        <DisplayPuzzles />
+                        <DisplayPuzzles search="user" />
 
                         <button className="regularButton" type="button" onClick={logout}>LOG UIT</button>
                         <LinkButton link="/delete-account" title="verwijder account"/>
