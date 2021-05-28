@@ -24,7 +24,6 @@ function SignInPage() {
                     "Access-Control-Allow-Headers": "*",
                 }
             });
-            console.log(result.data.jwt);
             setJwt(result.data.jwt);
         } catch (e) {
             console.error(e);
@@ -43,7 +42,7 @@ function SignInPage() {
             <PageHeader title="INLOGGEN"/>
             <div className="pageContainer">
                 <div className="pageContent">
-                    <p>Vul hier onder uw username en wachtwoord in om U aan te melden.</p>
+                    <p>Vul hieronder uw gebruikersnaam en wachtwoord in om in te loggen.</p>
                     <div>
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
                             <label htmlFor="username-field">
@@ -84,8 +83,7 @@ function SignInPage() {
                         </form>
                         {errormessage && <span className="errorMessage">{errormessage}</span> }
                     </div>
-                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U aan te
-                        melden.</p>
+                    <p>Heeft U nog geen account? Klik dan <Link to="/signup" className="link">HIER</Link> om U te registreren.</p>
                 </div>
             </div>
         </>
