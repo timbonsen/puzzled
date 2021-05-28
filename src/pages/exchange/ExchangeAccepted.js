@@ -2,7 +2,7 @@ import PageHeader from "../../components/headers/PageHeader";
 import PuzzleCard from "../../components/puzzleDisplay/PuzzleCard";
 import image1 from "../../assets/images/CastorSwitzerland.jpg";
 import image3 from "../../assets/images/JumboCats.jpg";
-import LinkButton from "../../components/buttons/linkButton/linkButton";
+import LinkButton from "../../components/buttons/linkButton";
 
 function ExchangeAccepted() {
     return (
