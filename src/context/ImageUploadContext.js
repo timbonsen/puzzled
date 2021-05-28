@@ -6,13 +6,10 @@ function ImageUploadContextProvider({children}) {
     const [imageId, setImageId] = useState(null)
 
     function registerImageId(registeredId) {
-        /*console.log(registeredId);*/
         setImageId(registeredId);
-        /*console.log(imageId);*/
     }
 
     useEffect(() => {
-        /*console.log(imageId)*/
     },[imageId]);
 
     function deleteImageId() {
