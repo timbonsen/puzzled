@@ -18,7 +18,6 @@ function GetImage({ puzzle, format }) {
             const result = await https.get(`/users/puzzles/image/${puzzle.image.id}`,{
                 responseType: "blob"
             });
-            console.log(result);
             setImage(result);
         } catch (e) {
             console.error(e);
