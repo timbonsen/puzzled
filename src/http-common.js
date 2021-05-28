@@ -8,5 +8,6 @@ export default axios.create({
     headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwtToken}`,
+        "Access-Control-Allow-Origin": "*"
     }
 })
