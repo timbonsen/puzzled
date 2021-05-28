@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {useForm} from "react-hook-form";
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import ImageUpload from "../../components/functions/ImageUpload";

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import PageHeader from "../../components/PageHeader";
-import LoginHeader from "../../components/LoginHeader";
+import PageHeader from "../../components/headers/PageHeader";
+import LoginHeader from "../../components/headers/LoginHeader";
 import './search.css'
 import DataListBrands from "../../components/datalists/DataListBrands";
 import DataListNumberOfPieces from "../../components/datalists/DataListNumberOfPieces";
@@ -55,6 +55,7 @@ function SearchPage() {
                                 name="searchFilter"
                                 onClick={searchFilterLists}
                                 {...register("searchFilter")}>
+                                <option selected="selected">Kies filter</option>
                                 <option value="all">Alle puzzels</option>
                                 <option value="tags">Categorie</option>
                                 <option value="pieces">Aantal Puzzelstukjes</option>
@@ -66,6 +67,7 @@ function SearchPage() {
                                 className="inputField"
                                 id="search-value"
                                 name="searchValue"
+                                defaultValue=""
                                 {...register("searchValue")}
                             />
                             <DataListBrands/>

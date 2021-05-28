@@ -72,7 +72,6 @@ function DisplayPuzzles({search, value}) {
             </>
         )
     }, [puzzles])
-    console.log(puzzleList);
     return puzzleList;
 }
 

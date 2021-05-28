@@ -1,4 +1,4 @@
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 
 function LoadingPage() {
     return (

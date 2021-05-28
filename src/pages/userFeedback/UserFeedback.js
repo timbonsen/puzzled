@@ -1,4 +1,4 @@
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 import React from "react";
 
 function UserFeedback({ title, text }) {

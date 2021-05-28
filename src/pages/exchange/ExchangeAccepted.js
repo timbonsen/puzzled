@@ -1,4 +1,4 @@
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 import PuzzleCard from "../../components/puzzleDisplay/PuzzleCard";
 import image1 from "../../assets/images/CastorSwitzerland.jpg";
 import image3 from "../../assets/images/JumboCats.jpg";

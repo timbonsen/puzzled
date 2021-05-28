@@ -1,6 +1,6 @@
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 import {useHistory} from "react-router-dom";
-import LoginHeader from "../../components/LoginHeader";
+import LoginHeader from "../../components/headers/LoginHeader";
 import https from "../../http-common";
 import {useContext, useEffect, useState} from "react";
 import GetImage from "../../components/functions/GetImage";

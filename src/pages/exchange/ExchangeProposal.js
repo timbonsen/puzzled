@@ -1,4 +1,4 @@
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 import './Exchange.css'
 import image1 from '../../assets/images/CastorSwitzerland.jpg';
 import image2 from '../../assets/images/JumboCottage.jpg'
