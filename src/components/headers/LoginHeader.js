@@ -4,21 +4,22 @@ import {AuthContext} from "../../context/AuthContext";
 
 function LoginHeader() {
 
-    const { user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     if (user === null || user === undefined) {
         return (
-            <h3>
+            <div className="loginHeader">
                 <div className="pageLink">
                     <Link to="/signin">INLOGGEN</Link>
                 </div>
-                OF
+                <h3>OF</h3>
                 <div className="pageLink">
-                    <Link to="/signup">AANMELDEN</Link>
+                    <Link to="/signup">REGISTREREN</Link>
                 </div>
-            </h3>
+            </div>
         )
-    } return (<></>)
+    }
+    return (<></>)
 }
 
 export default LoginHeader;
