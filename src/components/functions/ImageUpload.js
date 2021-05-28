@@ -24,7 +24,6 @@ function ImageUpload() {
         deleteId();
         const response = FileUploadService(image.currentFile);
         response.then((value) => {
-            console.log(value.data.id);
             registerId(value.data.id);
             setImage({
                 currentFile: image.currentFile,
@@ -36,13 +35,21 @@ function ImageUpload() {
 
     return (
         <div>
-            <div className="row">
-                <div className="col-8">
-                    <label className="btn btn-default p-0">
+            <div className="imageUploadContainer">
+                <div className="fileInput">
+                    <label>afbeelding</label>
+                    <label className="regularButton">
+                        kies afbeelding
                         <input type="file" accept="image/*" onChange={selectFile}/>
                     </label>
                 </div>
-                <div className="col-4">
+                {image.previewImage && (
+                    <div className="imageUploadContainer">
+                        <span className="normalMessage">{image.currentFile.name}</span>
+                        <img className="previewImage" src={image.previewImage} alt=""/>
+                    </div>
+                )}
+                <div className="uploadButtonContainer">
                     <button
                         type="button"
                         className="regularButton"
@@ -51,20 +58,9 @@ function ImageUpload() {
                     >
                         Afbeelding toevoegen
                     </button>
+                    {image.message && <span className="errorMessage">{image.message}</span>}
                 </div>
             </div>
-
-            {image.previewImage && (
-                <div>
-                    <img className="previewImage" src={image.previewImage} alt=""/>
-                </div>
-            )}
-
-            {image.message && (
-                <div className="errorMessage" role="alert">
-                    {image.message}
-                </div>
-            )}
         </div>
     );
 }
