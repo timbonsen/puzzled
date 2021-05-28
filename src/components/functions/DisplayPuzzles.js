@@ -6,6 +6,7 @@ import GetImage from "./GetImage";
 function DisplayPuzzles({search, value}) {
     const {user} = useContext(AuthContext);
     const [puzzles, setPuzzles] = useState([]);
+    const [loading, toggleLoading] = useState();
     const [puzzleList, setPuzzleList] = useState(
         <>
             <span className="errorMessage">Kon geen puzzels vinden</span>
@@ -13,53 +14,62 @@ function DisplayPuzzles({search, value}) {
     );
 
     async function getPuzzles() {
-        console.log(search)
+        toggleLoading(true);
         if (search === "none") {
-            console.log("None")
+            setPuzzleList(
+                <>
+                    <div className="puzzleContainer">
+                        <span className="errorMessage">Geen resultaten</span>
+                    </div>
+                </>
+            )
+            toggleLoading(false);
         } else if (search === "user") {
             try {
                 const result = await https.get(`/users/${user.username}/puzzles`);
-                console.log(result);
                 setPuzzles(result.data);
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleLoading(false);
             }
         } else if (search === "all") {
-            console.log("Alle puzzels")
             try {
                 const result = await https.get(`/puzzles/all`);
-                console.log(result);
                 setPuzzles(result.data);
+                toggleLoading(false);
             } catch (e) {
                 console.error(e);
+                toggleLoading(false);
             }
         } else {
             if (value === "") {
-                console.log("searchNone");
+                toggleLoading(false);
             } else {
-                console.log("Gezocht met filters");
                 try {
                     const result = await https.get(`/puzzles/${search}/${value}`);
-                    console.log(result);
                     setPuzzles(result.data);
+                    toggleLoading(false);
                 } catch (e) {
                     console.error(e);
+                    toggleLoading(false);
                 }
             }
         }
     }
 
     useEffect(getPuzzles, [value]);
-    console.log(puzzles);
 
     function ifThereArePuzzles() {
-        if (!puzzles || puzzles.length < 1) {
-            return <span className="errorMessage">Geen resultaten</span>
+        if (!loading && puzzles.length < 1) {
+            return (
+                <span className="errorMessage">Geen resultaten</span>
+            )
         } else {
             return puzzles.map((puzzle) => (
                     <GetImage puzzle={puzzle} format="small"/>
                 )
-            )
+            );
         }
     }
 
@@ -67,12 +77,16 @@ function DisplayPuzzles({search, value}) {
         setPuzzleList(
             <>
                 <div className="puzzleContainer">
+                    {loading && <span className="errorMessage">Loading...</span>}
                     {ifThereArePuzzles()}
                 </div>
             </>
         )
-    }, [puzzles])
+    }, [loading]);
+
     return puzzleList;
 }
+
+
 
 export default DisplayPuzzles;
