@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import axios from "axios";
 import React, {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext";
-import PageHeader from "../../components/PageHeader";
+import PageHeader from "../../components/headers/PageHeader";
 
 
 function RegisterAddress() {
@@ -42,6 +42,22 @@ function RegisterAddress() {
         }
     }
 
+    function addOriginalValue(value) {
+        if (user.address) {
+            if (value === "streetName") {
+                return user.address.streetName;
+            } else if (value === "houseNumber") {
+                return user.address.houseNumber;
+            } else if (value === "postalCode") {
+                return user.address.postalCode;
+            } else if (value === "city") {
+                return user.address.city;
+            } else if (value === "country") {
+                return user.address.country;
+            }
+        }
+    }
+
     function includeID() {
         if (user.address) {
             return (
@@ -75,6 +91,7 @@ function RegisterAddress() {
                                 className="inputField"
                                 id="streetName-field"
                                 name="streetName"
+                                defaultValue={addOriginalValue("streetName")}
                                 {...register("streetName", {
                                     required: {
                                         value: true,
@@ -95,6 +112,7 @@ function RegisterAddress() {
                                 className="inputField"
                                 id="houseNumber-field"
                                 name="houseNumber"
+                                defaultValue={addOriginalValue("houseNumber")}
                                 {...register("houseNumber", {
                                         required: {
                                             value: true,
@@ -112,6 +130,7 @@ function RegisterAddress() {
                                 className="inputField"
                                 id="postalCode-field"
                                 name="postalCode"
+                                defaultValue={addOriginalValue("postalCode")}
                                 {...register("postalCode", {
                                         required: {
                                             value: true,
@@ -137,6 +156,7 @@ function RegisterAddress() {
                                 className="inputField"
                                 id="city-field"
                                 name="city"
+                                defaultValue={addOriginalValue("city")}
                                 {...register("city", {
                                         required: {
                                             value: true,
@@ -158,6 +178,7 @@ function RegisterAddress() {
                                 className="inputField"
                                 id="country-field"
                                 name="country"
+                                defaultValue={addOriginalValue("country")}
                                 {...register("country", {
                                         required: {
                                             value: true,
