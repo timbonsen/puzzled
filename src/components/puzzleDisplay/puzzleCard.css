@@ -2,13 +2,22 @@
     cursor: pointer;
 }
 
-.puzzleImage, .previewImage {
+.puzzleImage, .previewImage, .largeImage {
     width: 200px;
     border: #720072 solid 3px;
     border-radius: 10px;
-    margin: 20px;
+}
+
+.puzzleImage {
+    margin: 10px;
+}
+
+.largeImage {
+    width: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .previewImage {
-    width: 500px;
+    width: 250px;
 }
