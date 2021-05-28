@@ -1,9 +1,9 @@
-import PageHeader from "../../components/PageHeader";
-import axios from "axios";
+import PageHeader from "../../components/headers/PageHeader";
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import LinkButton from "../../components/buttons/linkButton/linkButton";
+import https from "../../http-common";
 
 function WantToDelete() {
     const { user: { username }, logout } = useContext(AuthContext);
@@ -11,7 +11,7 @@ function WantToDelete() {
 
     async function deleteAccount() {
         try {
-            await axios.delete(`https://localhost:8443/users/${username}`);
+            await https.delete(`/users/${username}`);
             history.push("/feedback/deleted");
             logout();
         }
