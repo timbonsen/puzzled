@@ -3,38 +3,36 @@ import axios from "axios";
 import React, {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext";
 import PageHeader from "../../components/headers/PageHeader";
+import {useHistory} from "react-router-dom";
 
 
 function RegisterAddress() {
-
+    const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const {handleSubmit, register, formState: {errors}} = useForm();
     const {user, user: {username}, updateUser} = useContext(AuthContext);
 
     async function onSubmit(data) {
-        console.log(data);
         if (user.address) {
             try {
-                const result = await axios.put(`https://localhost:8443/users/${username}/address`, data, {
+                await axios.put(`https://localhost:8443/users/${username}/address`, data, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${jwtToken}`
                     }
                 });
-                console.log(result);
                 updateUser();
             } catch (e) {
                 console.error(e);
             }
         } else {
             try {
-                const result = await axios.post(`https://localhost:8443/users/${username}/address`, data, {
+                await axios.post(`https://localhost:8443/users/${username}/address`, data, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${jwtToken}`
                     }
                 });
-                console.log(result);
                 updateUser();
             } catch (e) {
                 console.error(e);
@@ -137,11 +135,11 @@ function RegisterAddress() {
                                             message: "Voer een postcode in"
                                         },
                                         pattern: {
-                                            value: /[1-9][0-9]{3}([A-RT-Z][A-Z]|[S][BCE-RT-Z])/,
-                                            message: "Voer een geldige postcode in: 2222AA"
+                                            value: /[1-9][0-9]{3}[\s]([A-RT-Z][A-Z]|[S][BCE-RT-Z])/,
+                                            message: "Voer een geldige postcode in met spatie: 2222 AA"
                                         },
                                         maxLength: {
-                                            value: 8,
+                                            value: 7,
                                             message: "Een postcode bestaat uit 4 cijfers en 2 letters"
                                         }
                                     }
@@ -192,7 +190,10 @@ function RegisterAddress() {
                                 )}
                             />
                             {errors.country && <span className="errorMessage">{errors.country.message}</span>}
-                            <button type="submit" className="regularButton">REGISTREER</button>
+                            <div className="buttonBar">
+                                <button type="submit" className="regularButton">REGISTREER</button>
+                                <button type="button" className="regularButton" onClick={history.goBack}>annuleer</button>
+                            </div>
                         </form>
                     </div>
                 </div>
