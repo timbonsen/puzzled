@@ -25,7 +25,6 @@ function AuthContextProvider({children}) {
 
         try {
             const result = await https.get(`/users/${username}`);
-            console.log(result);
             if (result.data.address != null) {
                 setAuthState({
                     user: {
@@ -57,7 +56,6 @@ function AuthContextProvider({children}) {
                 },
                 status: 'done'
             })
-
         } catch (e) {
             console.error(e);
         }
@@ -65,7 +63,7 @@ function AuthContextProvider({children}) {
 
     useEffect(() => {
         if (token && !authState.user) {
-            fetchUserData(token);
+            fetchUserData(token).then();
         } else {
             setAuthState({
                 status: 'done'
@@ -76,11 +74,12 @@ function AuthContextProvider({children}) {
     function login(jwtToken) {
         localStorage.setItem('token', jwtToken);
 
-        fetchUserData(jwtToken);
-        history.push("/feedback/login")
-        setTimeout(() => {
-            history.push("/account");
-        }, 1500);
+        fetchUserData(jwtToken).then(() => {
+            history.push("/feedback/login");
+            setTimeout(() => {
+                history.push("/account");
+            }, 1500);
+        });
     }
 
     function updateUser() {
@@ -102,7 +101,7 @@ function AuthContextProvider({children}) {
         history.push("/feedback/logout");
         setTimeout(() => {
             history.push("/");
-        }, 2000);
+        }, 1500);
     }
 
     const data = {
