@@ -1,4 +1,4 @@
-import LinkButton from "../buttons/linkButton/linkButton";
+import LinkButton from "../buttons/linkButton";
 import DisplayAddress from "./DisplayAddress";
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext";
