@@ -1,0 +1,15 @@
+.accountDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.accountDetails, .addressContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
