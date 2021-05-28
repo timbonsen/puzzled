@@ -1,0 +1,17 @@
+.normalMessage, .errorMessage {
+    color: #720072;
+    display: inline-block;
+    justify-content: center;
+    font-family: "Leelawadee UI", serif;
+    font-size: medium;
+    text-transform: lowercase;
+    margin: 10px;
+}
+
+.normalMessage::first-letter, .errorMessage::first-letter {
+    text-transform: uppercase;
+}
+
+.errorMessage {
+    color: red;
+}

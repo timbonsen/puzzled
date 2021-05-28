@@ -1,0 +1,20 @@
+
+h3 {
+    color: #720072;
+    text-transform: uppercase;
+    margin: 5px;
+    font-family: "Leelawadee UI", serif;
+    font-size: larger;
+}
+
+h4 {
+    color: #e06f2d;
+    margin: 10px;
+    font-family: "Leelawadee UI", serif;
+    font-size: large;
+    text-transform: capitalize;
+}
+
+h2 {
+    margin: 10px;
+}
