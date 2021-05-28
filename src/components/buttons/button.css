@@ -1,8 +1,8 @@
-.regularButton, .deleteButton {
+.regularButton, .deleteButton, .chooseFileButton {
     display: flex;
     justify-content: center;
     background-color: #ffceb5;
-    font-family: "Leelawadee UI";
+    font-family: "Leelawadee UI", serif;
     font-weight: bold;
     font-size: large;
     color: #720072;
@@ -12,7 +12,7 @@
     width: 250px;
 }
 
-.regularButton {
+.regularButton, .chooseFileButton {
     border: #ffbf9a solid 3px;
 }
 
@@ -20,7 +20,7 @@
     border: crimson solid 3px;
 }
 
-.regularButton:hover, .deleteButton:hover {
+.regularButton:hover, .deleteButton:hover, .chooseFileButton:hover, .textButton:hover {
     cursor: pointer;
 }
 
@@ -28,4 +28,13 @@
     background-color: lightgray;
     color: dimgray;
     border-color: dimgray;
+}
+
+.textButton {
+    background-color: white;
+    font-family: "Leelawadee UI", serif;
+    font-weight: bold;
+    font-size: large;
+    color: #e06f2d;
+    border: none;
 }
