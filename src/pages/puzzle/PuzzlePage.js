@@ -5,6 +5,7 @@ import https from "../../http-common";
 import {useContext, useEffect, useState} from "react";
 import GetImage from "../../components/functions/GetImage";
 import {AuthContext} from "../../context/AuthContext";
+import "./puzzle.css"
 
 function PuzzlePage() {
     const {user} = useContext(AuthContext);
@@ -29,7 +30,6 @@ function PuzzlePage() {
         async function fetchData() {
             try {
                 const result = await https.get(`puzzles/${id}`);
-                console.log(result);
                 setPuzzle(result.data);
                 toggleDataIsPresent(true);
             } catch (e) {
@@ -38,14 +38,13 @@ function PuzzlePage() {
         }
 
         if (puzzle === undefined) {
-            fetchData()
+            fetchData().then();
         }
     }, [puzzle]);
 
     async function deletePuzzle() {
         try {
-            const result = await https.delete(`puzzles/${id}`);
-            console.log(result);
+            await https.delete(`puzzles/${id}`);
             setPage(
                 <>
                     <PageHeader title="puzzel verwijderd"/>
@@ -78,24 +77,33 @@ function PuzzlePage() {
         if (dataIsPresent) {
             setPage(
                 <>
-                    <PageHeader title={puzzle.title}/>
+                    <PageHeader title="puzzel info"/>
                     <div className="pageContainer">
                         <div className="pageContent">
                             <LoginHeader/>
                             <button type="button" className="regularButton" onClick={history.goBack}>terug</button>
-                            <GetImage puzzle={puzzle} format="large"/>
-                            <h3>Eigenaar</h3>
-                            <h4>{puzzle.owner.username}</h4>
-                            <h3>Merk</h3>
-                            <h4>{puzzle.puzzleBrand}</h4>
-                            <h3>Aantal puzzelstukjes</h3>
-                            <h4>{puzzle.numberOfPieces}</h4>
-                            <h3>Hoogte</h3>
-                            <h4>{puzzle.height}</h4>
-                            <h3>Breedte</h3>
-                            <h4>{puzzle.width}</h4>
-                            <h3>Categorie</h3>
-                            <h4>{puzzle.tag1}</h4>
+                            <div className="puzzlePageContainer">
+                                <h3>{puzzle.title}</h3>
+                                <GetImage puzzle={puzzle} format="large"/>
+                                <div className="puzzleInfoContainer">
+                                    <div className="puzzlePageLeft">
+                                        <h3>Eigenaar</h3>
+                                        <h4>{puzzle.owner.username}</h4>
+                                        <h3>Merk</h3>
+                                        <h4>{puzzle.puzzleBrand}</h4>
+                                        <h3>Aantal puzzelstukjes</h3>
+                                        <h4>{puzzle.numberOfPieces}</h4>
+                                    </div>
+                                    <div className="puzzlePageRight">
+                                        <h3>Hoogte</h3>
+                                        <h4>{puzzle.height}</h4>
+                                        <h3>Breedte</h3>
+                                        <h4>{puzzle.width}</h4>
+                                        <h3>Categorie</h3>
+                                        <h4>{puzzle.tag1}</h4>
+                                    </div>
+                                </div>
+                            </div>
                             {deleteButton()}
                         </div>
                     </div>
