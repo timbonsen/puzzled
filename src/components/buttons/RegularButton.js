@@ -1,5 +1,5 @@
 import React from "react";
-import './regularButton.css';
+import './button.css';
 
 function RegularButton({text}) {
     return (
