@@ -1,12 +1,14 @@
-## Install dependencies
+## Installeer dependencies
 
-In the terminal, run `npm install`
+Typ het commando `npm install` in de terminal van je IDE en druk op enter.
+Vervolgens worden alle dependencies automatisch geïnstalleerd.
 
-## Available Scripts
+## Start de applicatie
 
-In the project directory, you can run:
+Typ het commando `npm start` in de terminal van je IDE en druk op enter.
+Dit zorgt ervoor dat de app in development mode word gedraaid op [http://localhost:3000](http://localhost:3000) in de browser.
 
-### `npm start`
+## Test de applicatie
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Typ het commando `npm run test` in de terminal van je IDE en druk op enter.
+Dit commando zal de gemaakte tests uit de `__test__` map uitvoeren met behulp van jest.
