@@ -7,17 +7,17 @@ import PageHeader from "../../components/headers/PageHeader";
 function SignUpPage() {
     const {handleSubmit, register, formState: {errors}} = useForm();
     const [errorMessage, setErrorMessage] = useState();
+    const [passwordCheck, togglePasswordCheck] = useState(true);
+    const [passwordMessage, setPasswordMessage] = useState("Wachtwoorden komen niet overeen");
     const history = useHistory();
 
     async function onSubmit(data) {
-        console.log(data);
         data.username = data.username.toLowerCase();
         data.email = data.email.toLowerCase();
         data.firstname =  data.firstname.toLowerCase();
         data.lastname = data.lastname.toLowerCase();
         try {
-            const result = await axios.post('https://localhost:8443/register', data);
-            console.log(result)
+            await axios.post('https://localhost:8443/register', data);
             history.push("/feedback/register")
             setTimeout(() => {
                 history.push("/signin")
@@ -28,12 +28,24 @@ function SignUpPage() {
         }
     }
 
+    function check() {
+        if (document.getElementById("password-field").value === document.getElementById("password-check-field").value) {
+            document.getElementById("passwordMessage").style.color = 'green';
+            togglePasswordCheck(false);
+            setPasswordMessage("Wachtwoorden komen overeen");
+        } else {
+            document.getElementById("passwordMessage").style.color = 'red';
+            togglePasswordCheck(true);
+            setPasswordMessage("Wachtwoorden komen niet overeen");
+        }
+    }
+
     return (
         <>
-            <PageHeader title="AANMELDEN"/>
+            <PageHeader title="registreren"/>
             <div className="pageContainer">
                 <div className="pageContent">
-                    <p>Vul hieronder uw gegevens in om U aan te melden om puzzels te kunnen gaan ruilen.</p>
+                    <p>Vul hieronder uw gegevens in om U te registreren.</p>
                     <div>
                         <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
                             <label htmlFor="username-field">
@@ -59,6 +71,7 @@ function SignUpPage() {
                                     className="inputField"
                                     id="password-field"
                                     name="password"
+                                    onKeyUp={check}
                                     {...register("password", {
                                             required: {
                                                 value: true,
@@ -73,6 +86,17 @@ function SignUpPage() {
                                 />
                             </label>
                             {errors.password && <span className="errorMessage">{errors.password.message}</span>}
+                            <label htmlFor="password-check-field">
+                                Herhaal wachtwoord<br/>
+                                <input
+                                    type="password"
+                                    className="inputField"
+                                    id="password-check-field"
+                                    name="password"
+                                    onKeyUp={check}
+                                />
+                            </label>
+                            <span id="passwordMessage" className="errorMessage">{passwordMessage}</span>
                             <label htmlFor="email-field">
                                 Email<br/>
                                 <input
@@ -110,7 +134,7 @@ function SignUpPage() {
                                     {...register("lastname")}
                                 />
                             </label>
-                            <button type="submit" className="regularButton">REGISTREER</button>
+                            <button type="submit" className="regularButton" disabled={passwordCheck}>REGISTREER</button>
                         </form>
                         {errorMessage && <span className="errorMessage">{errorMessage}</span>}
                     </div>
