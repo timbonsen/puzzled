@@ -17,11 +17,9 @@ function SearchPage() {
     const [searchResult, setSearchResult] = useState(null);
 
     function onSubmit(data) {
-        console.log(data);
         data.searchValue = data.searchValue.toLowerCase()
         setSearchValue(data.searchValue);
         setSearchTicker(searchTicker + 1);
-        console.log(searchTicker);
         document.getElementById("search-value").value = "";
     }
 
@@ -32,12 +30,10 @@ function SearchPage() {
     useEffect(() => {
         setSearchResult(null);
         setTimeout(() => {
-            console.log("Heeft gezocht");
-            console.log(searchResult);
             setSearchResult(
                 <DisplayPuzzles search={searchFilter} value={searchValue}/>
             );
-        });
+        },10);
     }, [searchTicker]);
 
     return (
@@ -55,7 +51,7 @@ function SearchPage() {
                                 name="searchFilter"
                                 onClick={searchFilterLists}
                                 {...register("searchFilter")}>
-                                <option selected="selected">Kies filter</option>
+                                <option>Kies filter</option>
                                 <option value="all">Alle puzzels</option>
                                 <option value="tags">Categorie</option>
                                 <option value="pieces">Aantal Puzzelstukjes</option>
