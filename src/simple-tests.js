@@ -1,20 +1,18 @@
-function add(num1, num2){
-
-    return num1 + num2;
+function add(num1, num2) {
+  return num1 + num2;
 }
 
 function findByName(users, name) {
-
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i];
-        if (user.name === name) {
-            return user;
-        }
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    if (user.name === name) {
+      return user;
     }
-    return null;
+  }
+  return null;
 }
 
 module.exports = {
-    add,
-    findByName,
-}
+  add,
+  findByName,
+};
