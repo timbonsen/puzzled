@@ -11,7 +11,6 @@ function FileUploadService(file) {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log(result);
     return result;
   } catch (e) {
     console.error(e);
