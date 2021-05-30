@@ -15,7 +15,7 @@ function GetImage({ puzzle, format }) {
 
   async function fetchImage() {
     try {
-      const result = await https.get(`/users/puzzles/image/${puzzle.image.id}`, {
+      const result = await https.get(`/users/puzzles/${puzzle.image.id}`, {
         responseType: 'blob',
       });
       setImage(result);
