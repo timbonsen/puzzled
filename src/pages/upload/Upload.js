@@ -74,7 +74,12 @@ function UploadPage() {
                   name="puzzleBrand"
                   className="inputField"
                   id="puzzleBrand"
-                  {...register('puzzleBrand')}
+                  {...register('puzzleBrand', {
+                    required: {
+                      value: true,
+                      message: 'Er moet een merk voor de puzzel meegegeven worden.',
+                    },
+                  })}
                 />
                 <DataListBrands />
                 <label htmlFor="numberOfPieces">aantal puzzelstukjes</label>
@@ -134,6 +139,10 @@ function UploadPage() {
                   className="inputField"
                   id="puzzleHeight"
                   {...register('puzzleHeight', {
+                    required: {
+                      value: true,
+                      message: 'De hoogte van een puzzel moet worden meegegeven',
+                    },
                     min: {
                       value: 0,
                       message: 'De afmeting kan geen negatieve waarde zijn',
@@ -151,6 +160,10 @@ function UploadPage() {
                   className="inputField"
                   id="puzzleWidth"
                   {...register('puzzleWidth', {
+                    required: {
+                      value: true,
+                      message: 'De breedte van een puzzel moet worden weergegeven',
+                    },
                     min: {
                       value: 0,
                       message: 'De afmeting kan geen negatieve waarde zijn',
@@ -192,11 +205,11 @@ function UploadPage() {
             </div>
             {errors.title && <span className="errorMessage">{errors.title.message}</span>}
             {errors.eanCode
-            && <span className="errorMessage">{errors.eanCode.message}</span>}
+                        && <span className="errorMessage">{errors.eanCode.message}</span>}
             {errors.puzzleHeight
-            && <span className="errorMessage">{errors.puzzleHeight.message}</span>}
+                        && <span className="errorMessage">{errors.puzzleHeight.message}</span>}
             {errors.puzzleWidth
-            && <span className="errorMessage">{errors.puzzleWidth.message}</span>}
+                        && <span className="errorMessage">{errors.puzzleWidth.message}</span>}
             <span className="normalMessage">Voeg een afbeelding toe om de puzzel te kunnen uploaden.</span>
             <div className="buttonBar">
               <button className="regularButton" type="submit" disabled={disableSubmitButton()}>
