@@ -7,7 +7,6 @@ function AdminPage() {
   async function fetchUsers() {
     try {
       const result = await https.get('/admin/all-users');
-      console.log(result);
       // eslint-disable-next-line no-restricted-syntax
       for (const user of result.data) {
         const container = document.getElementById('userList');
@@ -18,7 +17,6 @@ function AdminPage() {
       }
     } catch (e) {
       console.error(e);
-      console.dir(e);
     }
   }
   useEffect(fetchUsers, []);
